@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eventos | Ticket Virtual</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="main-nav" id="main-nav">
+    <div class="nav-bar">
+      <a href="/" class="nav-logo">
+        <img src="../images/LOGO png negro.png" alt="Ticket Virtual Logo" class="nav-logo-img"/>
+      </a>
+
+      <div class="nav-buttons-wrapper">
+        <a href="#" class="menu-nav-cta menu-nav-cta-light" id="menu-toggle">
+          <div class="menu-cta-contents">
+            <div class="menu-bt-text menu-bt-text-light">Menu</div>
+            <div class="burger-wrapper">
+              <span class="burger-line"></span>
+              <span class="burger-line"></span>
+            </div>
+          </div>
+        </a>
+
+        <a href="contacto.html" class="primary-cta-nav primary-nav-light">
+          <div class="cta-contents">
+            <div class="cta-text-wrapper">
+              <div class="ctatext nav-ctatext-light">Contacto</div>
+            </div>
+            <div class="arrow-wrapper-sml">→</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MENU OVERLAY -->
+  <div class="nav-overlay" id="nav-overlay">
+    <div class="close-nav-btn" id="close-nav">
+      <span class="close-line l1"></span>
+      <span class="close-line l2"></span>
+    </div>
+
+    <div class="nav-open-links">
+      <a href="../index.html" class="nav-open-link">
+        <span class="nav-plus">+</span>
+        <div class="nav-link-text">Inicio</div>
+        <span class="nav-plus">+</span>
+      </a>
+      <a href="eventos.html" class="nav-open-link">
+        <span class="nav-plus">+</span>
+        <div class="nav-link-text">EVENTOS</div>
+        <span class="nav-plus">+</span>
+      </a>
+      <a href="../index.html#contact" class="nav-open-link">
+        <span class="nav-plus">+</span>
+        <div class="nav-link-text">Contacto</div>
+        <span class="nav-plus">+</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- CONTENIDO -->
+  <main>
+    <section class="eventos-section" navtype="light">
+      <div class="eventos-header">
+        <!-- Buscador -->
+        <div class="eventos-search-wrapper">
+          <input
+            type="text"
+            id="eventos-search"
+            class="eventos-search-input"
+            placeholder="Buscar evento..."
+            oninput="filtrarEventos(this.value)"
+          />
+          <button class="eventos-search-btn" onclick="filtrarEventos(document.getElementById('eventos-search').value)">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+          </button>
+        </div>
+        <div class="detail-small light">CARTELERA</div>
+        <h1 class="title-huge">EVENTOS DISPONIBLES</h1>
+      </div>
+
+      <div class="eventos-grid">
+
+          <!-- AIRBAG -->
+          <a href="#" class="evento-card-v2">
+            <div class="ec-flyer-wrap">
+              <img src="../images/flyer-airbag.jpg" alt="Flyer AIRBAG" class="ec-flyer">
+            </div>
+            <div class="ec-body">
+              <p class="ec-venue-label">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                MOVISTAR ARENA — Bs.As.
+              </p>
+              <h3 class="ec-name">AIRBAG</h3>
+              <div class="ec-meta">
+                <div class="ec-date-block">
+                  <span class="ec-day">15</span>
+                  <div class="ec-month-year"><span>Jun</span><span>2025</span></div>
+                </div>
+                <div class="ec-divider"></div>
+                <div class="ec-time-block">
+                  <span class="ec-hour">21<sup>00</sup></span>
+                  <span class="ec-hrs">hrs</span>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <!-- BAD BUNNY -->
+          <a href="#" class="evento-card-v2">
+            <div class="ec-flyer-wrap">
+              <img src="../images/flyer-badbunny.jpg" alt="Flyer BAD BUNNY" class="ec-flyer">
+            </div>
+            <div class="ec-body">
+              <p class="ec-venue-label">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                ESTADIO ÚNICO — La Plata
+              </p>
+              <h3 class="ec-name">BAD BUNNY</h3>
+              <div class="ec-meta">
+                <div class="ec-date-block">
+                  <span class="ec-day">22</span>
+                  <div class="ec-month-year"><span>Jul</span><span>2025</span></div>
+                </div>
+                <div class="ec-divider"></div>
+                <div class="ec-time-block">
+                  <span class="ec-hour">20<sup>00</sup></span>
+                  <span class="ec-hrs">hrs</span>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <!-- L-GANTE -->
+          <a href="#" class="evento-card-v2">
+            <div class="ec-flyer-wrap">
+              <img src="../images/flyer-lgante.jpg" alt="Flyer L-GANTE" class="ec-flyer">
+            </div>
+            <div class="ec-body">
+              <p class="ec-venue-label">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                TEATRO VORTERIX — Bs.As.
+              </p>
+              <h3 class="ec-name">L-GANTE</h3>
+              <div class="ec-meta">
+                <div class="ec-date-block">
+                  <span class="ec-day">09</span>
+                  <div class="ec-month-year"><span>Ago</span><span>2025</span></div>
+                </div>
+                <div class="ec-divider"></div>
+                <div class="ec-time-block">
+                  <span class="ec-hour">21<sup>30</sup></span>
+                  <span class="ec-hrs">hrs</span>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <!-- PIMPINELA — SOLD OUT -->
+          <a href="#" class="evento-card-v2">
+            <div class="ec-flyer-wrap">
+              <img src="../images/flyer-pimpinela.jpg" alt="Flyer PIMPINELA" class="ec-flyer">
+              <div class="ec-sold-out">SOLD OUT</div>
+            </div>
+            <div class="ec-body">
+              <p class="ec-venue-label">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                LUNA PARK — Bs.As.
+              </p>
+              <h3 class="ec-name">PIMPINELA</h3>
+              <div class="ec-meta">
+                <div class="ec-date-block">
+                  <span class="ec-day">20</span>
+                  <div class="ec-month-year"><span>Sep</span><span>2025</span></div>
+                </div>
+                <div class="ec-divider"></div>
+                <div class="ec-time-block">
+                  <span class="ec-hour">21<sup>00</sup></span>
+                  <span class="ec-hrs">hrs</span>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <!-- DJ GAZPAR -->
+          <a href="#" class="evento-card-v2">
+            <div class="ec-flyer-wrap">
+              <img src="../images/flyer-djgazpar.jpg" alt="Flyer DJ GAZPAR" class="ec-flyer">
+            </div>
+            <div class="ec-body">
+              <p class="ec-venue-label">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                NICETO CLUB — Bs.As.
+              </p>
+              <h3 class="ec-name">DJ GAZPAR</h3>
+              <div class="ec-meta">
+                <div class="ec-date-block">
+                  <span class="ec-day">11</span>
+                  <div class="ec-month-year"><span>Oct</span><span>2025</span></div>
+                </div>
+                <div class="ec-divider"></div>
+                <div class="ec-time-block">
+                  <span class="ec-hour">00<sup>00</sup></span>
+                  <span class="ec-hrs">hrs</span>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <!-- EMILIA MERNES -->
+          <a href="#" class="evento-card-v2">
+            <div class="ec-flyer-wrap">
+              <img src="../images/flyer-emiliamernes.jpg" alt="Flyer EMILIA MERNES" class="ec-flyer">
+            </div>
+            <div class="ec-body">
+              <p class="ec-venue-label">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                MOVISTAR ARENA — Bs.As.
+              </p>
+              <h3 class="ec-name">EMILIA MERNES</h3>
+              <div class="ec-meta">
+                <div class="ec-date-block">
+                  <span class="ec-day">14</span>
+                  <div class="ec-month-year"><span>Nov</span><span>2025</span></div>
+                </div>
+                <div class="ec-divider"></div>
+                <div class="ec-time-block">
+                  <span class="ec-hour">21<sup>00</sup></span>
+                  <span class="ec-hrs">hrs</span>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <!-- DUKI -->
+          <a href="#" class="evento-card-v2">
+            <div class="ec-flyer-wrap">
+              <img src="../images/flyer-duki.jpg" alt="Flyer DUKI" class="ec-flyer">
+            </div>
+            <div class="ec-body">
+              <p class="ec-venue-label">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                ESTADIO ÚNICO — La Plata
+              </p>
+              <h3 class="ec-name">DUKI</h3>
+              <div class="ec-meta">
+                <div class="ec-date-block">
+                  <span class="ec-day">06</span>
+                  <div class="ec-month-year"><span>Dic</span><span>2025</span></div>
+                </div>
+                <div class="ec-divider"></div>
+                <div class="ec-time-block">
+                  <span class="ec-hour">20<sup>00</sup></span>
+                  <span class="ec-hrs">hrs</span>
+                </div>
+              </div>
+            </div>
+          </a>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <section class="footer-section">
+    <div class="footer-scroll-wrap">
+      <footer class="footer-inner">
+        <div class="footer-logo-wrapper">
+          <h1 class="footer-big-logo-text">GRACIAS POR ELEGIRNOS</h1>
+        </div>
+        <div class="footer-linkedin-row">
+          <div class="footer-divider"></div>
+          <div class="footer-link-row">
+            <a href="https://www.instagram.com/ticket_virtual/" target="_blank" class="footer-linkout">
+              <span class="footer-link-text">Siguenos en nuestras redes</span>
+              <span class="link-arrow">↗</span>
+            </a>
+          </div>
+          <div class="footer-divider"></div>
+        </div>
+        <div class="footer-bottom">
+          <span class="detail-small light">Todos los derechos reservados ©.</span>
+          <a href="https://typeandspacepartnerships.com/" target="_blank" class="tsp-link">
+            <span class="body-tiny light">SAN MIGUEL DE TUCUMAN</span>
+            <span class="detail-small light">ARGENTINA</span>
+          </a>
+        </div>
+      </footer>
+    </div>
+  </section>
+
+  <!-- GSAP -->
+  <script src="https://cdn.prod.website-files.com/gsap/3.14.2/gsap.min.js"></script>
+  <script src="https://cdn.prod.website-files.com/gsap/3.14.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.prod.website-files.com/gsap/3.14.2/ScrollSmoother.min.js"></script>
+  <script src="https://cdn.prod.website-files.com/gsap/3.14.2/SplitText.min.js"></script>
+  <script src="https://cdn.prod.website-files.com/gsap/3.14.2/ScrambleTextPlugin.min.js"></script>
+  <script src="../main.js"></script>
+  <script>
+    function filtrarEventos(query) {
+      const q = query.toLowerCase().trim();
+      document.querySelectorAll('.eventos-grid .evento-card-v2').forEach(function(card) {
+        const nombre = card.querySelector('.ec-name');
+        const venue  = card.querySelector('.ec-venue-label');
+        const texto  = ((nombre ? nombre.textContent : '') + ' ' + (venue ? venue.textContent : '')).toLowerCase();
+        card.style.display = (!q || texto.includes(q)) ? '' : 'none';
+      });
+    }
+  </script>
+</body>
+</html>

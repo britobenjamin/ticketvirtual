@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>Solid-State Battery Technology for a Sustainable Future — Voltpile</title>
+  <meta name="description" content="Voltpile develops safer, scalable solid state batteries with the highest energy density and a turnkey manufacturing platform for sustainable electrification."/>
+  <link rel="stylesheet" href="styles.css"/>
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+  <!-- Google Fonts: Syne (display) + Inter (body) - closely matching original's rounded geometric headings -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+</head>
+<body class="body">
+
+  <!-- ===================== NAV ===================== -->
+  <nav class="main-nav" id="main-nav">
+    <div class="nav-bar">
+      <a href="/" class="nav-logo">
+        <img src="images/LOGO png negro.png" alt="Voltpile Logo" class="nav-logo-img"/>
+      </a>
+
+      <div class="nav-buttons-wrapper">
+        <!-- Menu button -->
+        <div class="menu-button">
+          <a href="#" class="menu-nav-cta menu-nav-cta-light" id="menu-toggle">
+            <div class="menu-cta-contents">
+              <div class="menu-bt-text menu-bt-text-light">Menu</div>
+              <div class="burger-wrapper">
+                <span class="burger-line"></span>
+                <span class="burger-line"></span>
+                <span class="burger-line"></span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <!-- Contact CTA -->
+        <div class="contact-button">
+          <a href="#contact" class="primary-cta-nav primary-nav-light">
+            <div class="cta-contents">
+              <div class="cta-text-wrapper">
+                <div class="ctatext nav-ctatext-light">Contacto</div>
+              </div>
+              <div class="arrow-wrapper-sml">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Nav overlay (fullscreen menu) -->
+    <div class="nav-overlay" id="nav-overlay">
+      <a href="#" class="close-nav-btn" id="close-nav">
+        <span class="close-line l1"></span>
+        <span class="close-line l2"></span>
+      </a>
+      <div class="nav-open-links">
+        <a href="/" class="nav-open-link">
+          <span class="nav-plus">+</span>
+          <div class="nav-link-text">Inicio</div>
+          <span class="nav-plus">+</span>
+        </a>
+        <a href="pages/eventos.html" class="nav-open-link">
+          <span class="nav-plus">+</span>
+          <div class="nav-link-text">EVENTOS</div>
+          <span class="nav-plus">+</span>
+        </a>
+        <a href="/about" class="nav-open-link">
+          <span class="nav-plus">+</span>
+          <div class="nav-link-text">Sumate</div>
+          <span class="nav-plus">+</span>
+        </a>
+        <a href="/contact" class="nav-open-link">
+          <span class="nav-plus">+</span>
+          <div class="nav-link-text">Contacto</div>
+          <span class="nav-plus">+</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===================== SMOOTH SCROLL WRAPPER ===================== -->
+  <div class="smooth-wrapper" id="smooth-wrapper">
+    <div class="smooth-content" id="smooth-content">
+
+      <!-- ===================== HERO ===================== -->
+      <section navtype="light" class="hero-section">
+        <div class="full-height-wrapper light-bg">
+
+          <!-- Scrolling ticker with logo -->
+          <div class="ticker-overflow">
+            <div class="ticker-flex" id="hero-ticker">
+              <div class="text-ticker">Ticket Virtual</div>
+              <div class="text-ticker">Ticket Virtual</div>
+              <div class="text-ticker">Ticket Virtual</div>
+              <div class="text-ticker">Ticket Virtual</div>
+            </div>
+          </div>
+
+          <!-- Interactive ticket -->
+          <div class="hero-ticket-area">
+            <ul class="tio-list">
+
+              <!-- EARLY BIRD — Bad Bunny -->
+              <li class="tio-item tio-sold" id="tio-early">
+                <div class="tio-strip tio-strip-early" onclick="switchTicket('early')">
+                  <span class="tio-sprice">$100.000</span>
+                  <span class="tio-slabel">BAD BUNNY</span>
+                  <span class="tio-ssold">SOLD OUT</span>
+                </div>
+                <div class="tio-body">
+                  <div class="tio-notch tio-notch-top"></div>
+                  <div class="tio-notch tio-notch-bottom"></div>
+                  <div class="tio-left">
+                    <h2 class="tio-tier">GENERAL</h2>
+                    <div class="tio-price">$100.000</div>
+                    <div class="tio-vat">(VAT EXCLUDED)</div>
+                    <div class="tio-soldout">SOLD OUT</div>
+                  </div>
+                  <div class="tio-perf"></div>
+                  <div class="tio-right">
+                    <h3 class="tio-event-title">BAD BUNNY</h3>
+                    <a href="#contact" class="tio-waitlist-btn">
+                      <span>→</span> COMPRAR ENTRADA <span>←</span>
+                    </a>
+                    <div class="tio-meta">
+                      <div class="tio-meta-row">
+                        <span>BUENOS AIRES</span>
+                        <span>JUN · 14 · 15 · 2025</span>
+                      </div>
+                      <div class="tio-meta-divider"></div>
+                      <div class="tio-meta-row">
+                        <span>ESTADIO MONUMENTAL</span>
+                        <span>2 FECHAS</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <!-- STANDARD — DJ Gazpar -->
+              <li class="tio-item tio-sold" id="tio-standard">
+                <div class="tio-strip tio-strip-standard" onclick="switchTicket('standard')">
+                  <span class="tio-sprice">$20.000</span>
+                  <span class="tio-slabel">DJ GAZPAR</span>
+                  <span class="tio-ssold">SOLD OUT</span>
+                </div>
+                <div class="tio-body">
+                  <div class="tio-notch tio-notch-top"></div>
+                  <div class="tio-notch tio-notch-bottom"></div>
+                  <div class="tio-left">
+                    <h2 class="tio-tier">VIP CASQUI</h2>
+                    <div class="tio-price">$20.000</div>
+                    <div class="tio-vat">(VAT EXCLUDED)</div>
+                    <div class="tio-soldout">SOLD OUT</div>
+                  </div>
+                  <div class="tio-perf"></div>
+                  <div class="tio-right">
+                    <h3 class="tio-event-title">DJ GAZPAR</h3>
+                    <a href="#contact" class="tio-waitlist-btn">
+                      <span>→</span> COMPRAR ENTRADA <span>←</span>
+                    </a>
+                    <div class="tio-meta">
+                      <div class="tio-meta-row">
+                        <span>CÓRDOBA</span>
+                        <span>AGO · 9 · 2025</span>
+                      </div>
+                      <div class="tio-meta-divider"></div>
+                      <div class="tio-meta-row">
+                        <span>ESTADIO KEMPES</span>
+                        <span>1 FECHA</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <!-- LATE BIRD — Los Pimpinelas -->
+              <li class="tio-item tio-active" id="tio-latebird">
+                <div class="tio-strip tio-strip-late" onclick="switchTicket('latebird')">
+                  <span class="tio-sprice">$60.000</span>
+                  <span class="tio-slabel">LOS PIMPINELAS</span>
+                  <span class="tio-ssold">SOLD OUT</span>
+                </div>
+                <div class="tio-body">
+                  <div class="tio-notch tio-notch-top"></div>
+                  <div class="tio-notch tio-notch-bottom"></div>
+                  <div class="tio-left">
+                    <h2 class="tio-tier">GENERAL</h2>
+                    <div class="tio-price">$60.000</div>
+                    <div class="tio-vat">(VAT EXCLUDED)</div>
+                    <div class="tio-soldout">SOLD OUT</div>
+                  </div>
+                  <div class="tio-perf"></div>
+                  <div class="tio-right">
+                    <h3 class="tio-event-title">LOS PIMPINELAS</h3>
+                    <a href="#contact" class="tio-waitlist-btn">
+                      <span>→</span> COMPRAR ENTRADA <span>←</span>
+                    </a>
+                    <div class="tio-meta">
+                      <div class="tio-meta-row">
+                        <span>ROSARIO</span>
+                        <span>SEP · 20 · 21 · 2025</span>
+                      </div>
+                      <div class="tio-meta-divider"></div>
+                      <div class="tio-meta-row">
+                        <span>TEATRO BROADWAY</span>
+                        <span>2 FECHAS</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+            </ul>
+          </div>
+
+          <!-- CTA eventos -->
+          <div class="hero-cta-wrapper">
+            <a href="pages/eventos.html" class="cta-eventos">IR A EVENTOS</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== EVENTOS ===================== -->
+      <section id="eventos" navtype="light" class="eventos-section">
+        <div class="eventos-header">
+          <span class="detail-small light">/////////////////</span>
+          <h2 class="title-medium light">ULTIMOS EVENTOS</h2>
+          <span class="detail-small light">/////////////////</span>
+        </div>
+        <div class="eventos-grid">
+
+          <!-- AIRBAG -->
+          <a href="#" class="evento-card-v2">
+            <div class="ec-flyer-wrap">
+              <!-- Reemplazá src con la ruta a tu flyer -->
+              <img src="images/flyer-airbag.jpg" alt="Flyer AIRBAG" class="ec-flyer">
+            </div>
+            <div class="ec-body">
+              <p class="ec-venue-label">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                MOVISTAR ARENA — Bs.As.
+              </p>
+              <h3 class="ec-name">AIRBAG</h3>
+              <div class="ec-meta">
+                <div class="ec-date-block">
+                  <span class="ec-day">15</span>
+                  <div class="ec-month-year"><span>Jun</span><span>2025</span></div>
+                </div>
+                <div class="ec-divider"></div>
+                <div class="ec-time-block">
+                  <span class="ec-hour">21<sup>00</sup></span>
+                  <span class="ec-hrs">hrs</span>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <!-- BAD BUNNY -->
+          <a href="#" class="evento-card-v2">
+            <div class="ec-flyer-wrap">
+              <img src="images/flyer-badbunny.jpg" alt="Flyer BAD BUNNY" class="ec-flyer">
+            </div>
+            <div class="ec-body">
+              <p class="ec-venue-label">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                ESTADIO ÚNICO — La Plata
+              </p>
+              <h3 class="ec-name">BAD BUNNY</h3>
+              <div class="ec-meta">
+                <div class="ec-date-block">
+                  <span class="ec-day">22</span>
+                  <div class="ec-month-year"><span>Jul</span><span>2025</span></div>
+                </div>
+                <div class="ec-divider"></div>
+                <div class="ec-time-block">
+                  <span class="ec-hour">20<sup>00</sup></span>
+                  <span class="ec-hrs">hrs</span>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <!-- L-GANTE -->
+          <a href="#" class="evento-card-v2">
+            <div class="ec-flyer-wrap">
+              <img src="images/flyer-lgante.jpg" alt="Flyer L-GANTE" class="ec-flyer">
+            </div>
+            <div class="ec-body">
+              <p class="ec-venue-label">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                TEATRO VORTERIX — Bs.As.
+              </p>
+              <h3 class="ec-name">L-GANTE</h3>
+              <div class="ec-meta">
+                <div class="ec-date-block">
+                  <span class="ec-day">09</span>
+                  <div class="ec-month-year"><span>Ago</span><span>2025</span></div>
+                </div>
+                <div class="ec-divider"></div>
+                <div class="ec-time-block">
+                  <span class="ec-hour">21<sup>30</sup></span>
+                  <span class="ec-hrs">hrs</span>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <!-- PIMPINELA — SOLD OUT -->
+          <a href="#" class="evento-card-v2">
+            <div class="ec-flyer-wrap">
+              <img src="images/flyer-pimpinela.jpg" alt="Flyer PIMPINELA" class="ec-flyer">
+              <div class="ec-sold-out">SOLD OUT</div>
+            </div>
+            <div class="ec-body">
+              <p class="ec-venue-label">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                LUNA PARK — Bs.As.
+              </p>
+              <h3 class="ec-name">PIMPINELA</h3>
+              <div class="ec-meta">
+                <div class="ec-date-block">
+                  <span class="ec-day">20</span>
+                  <div class="ec-month-year"><span>Sep</span><span>2025</span></div>
+                </div>
+                <div class="ec-divider"></div>
+                <div class="ec-time-block">
+                  <span class="ec-hour">21<sup>00</sup></span>
+                  <span class="ec-hrs">hrs</span>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <!-- DJ GAZPAR -->
+          <a href="#" class="evento-card-v2">
+            <div class="ec-flyer-wrap">
+              <img src="images/flyer-djgazpar.jpg" alt="Flyer DJ GAZPAR" class="ec-flyer">
+            </div>
+            <div class="ec-body">
+              <p class="ec-venue-label">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                NICETO CLUB — Bs.As.
+              </p>
+              <h3 class="ec-name">DJ GAZPAR</h3>
+              <div class="ec-meta">
+                <div class="ec-date-block">
+                  <span class="ec-day">11</span>
+                  <div class="ec-month-year"><span>Oct</span><span>2025</span></div>
+                </div>
+                <div class="ec-divider"></div>
+                <div class="ec-time-block">
+                  <span class="ec-hour">00<sup>00</sup></span>
+                  <span class="ec-hrs">hrs</span>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <!-- EMILIA MERNES -->
+          <a href="#" class="evento-card-v2">
+            <div class="ec-flyer-wrap">
+              <img src="images/flyer-emiliamernes.jpg" alt="Flyer EMILIA MERNES" class="ec-flyer">
+            </div>
+            <div class="ec-body">
+              <p class="ec-venue-label">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                MOVISTAR ARENA — Bs.As.
+              </p>
+              <h3 class="ec-name">EMILIA MERNES</h3>
+              <div class="ec-meta">
+                <div class="ec-date-block">
+                  <span class="ec-day">14</span>
+                  <div class="ec-month-year"><span>Nov</span><span>2025</span></div>
+                </div>
+                <div class="ec-divider"></div>
+                <div class="ec-time-block">
+                  <span class="ec-hour">21<sup>00</sup></span>
+                  <span class="ec-hrs">hrs</span>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <!-- DUKI -->
+          <a href="#" class="evento-card-v2">
+            <div class="ec-flyer-wrap">
+              <img src="images/flyer-duki.jpg" alt="Flyer DUKI" class="ec-flyer">
+            </div>
+            <div class="ec-body">
+              <p class="ec-venue-label">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                ESTADIO ÚNICO — La Plata
+              </p>
+              <h3 class="ec-name">DUKI</h3>
+              <div class="ec-meta">
+                <div class="ec-date-block">
+                  <span class="ec-day">06</span>
+                  <div class="ec-month-year"><span>Dic</span><span>2025</span></div>
+                </div>
+                <div class="ec-divider"></div>
+                <div class="ec-time-block">
+                  <span class="ec-hour">20<sup>00</sup></span>
+                  <span class="ec-hrs">hrs</span>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <!-- VER MÁS -->
+          <a href="pages/eventos.html" class="evento-card-v2 ec-ver-mas">
+            <div class="ec-ver-mas-inner">
+              <span class="ec-ver-mas-plus">+</span>
+              <p class="ec-ver-mas-text">Click para ver más eventos</p>
+            </div>
+          </a>
+
+        </div>
+      </section>
+
+      <!-- ===================== THE PROBLEM P1 ===================== -->
+      <section navtype="light" class="problem-p1-section">
+        <div class="sticky-fullheight">
+          <div class="problem-bg-image">
+            <img src="images/nainoa-shizuru-NcdG9mK3PBY-unsplash.jpg" class="problem-bg-img" alt=""/>
+            <div class="problem-grid-wrapper">
+              <div class="sidenote-rotated">
+                <span class="detail-small-rotated white">THE PROBLEM</span>
+              </div>
+              <h2 class="expressive-big white">
+                <span>EL FUTURO DE LOS EVENTOS YA ES DIGITAL</span>
+              </h2>
+              <div class="progress-element">
+                <div class="progress-wrapper">
+                  <span class="detail-large white">1</span>
+                  <div class="progress-line-wrapper"><div class="progress-line"></div></div>
+                  <span class="detail-large white">2</span>
+                </div>
+              </div>
+              <div class="problem-body white">
+                <p class="body-large white">Gestioná entradas, accesos y validaciones desde una sola plataforma.
+Sin papel, sin filas, sin errores.</p>
+              </div>
+              <div class="down-arrow white">↓</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== THE PROBLEM P2 ===================== -->
+      <section navtype="dark" class="problem-p2-section">
+        <div class="problem-pt2-wrapper">
+          <div class="background-colour-light">
+            <div class="half-half">
+              <div class="problem-pt2-text">
+                <div class="detail-small dark">¿Cómo funciona?</div>
+                <h2 class="title-small dark bottom-margin">Sacá tu entrada en segundos.</h2>
+                <ol class="steps-list">
+                  <li class="step-item">
+                    <span class="step-num">01</span>
+                    <div class="step-content">
+                      <strong class="step-title">Comprá tu entrada</strong>
+                      <p class="step-desc">Elegí el evento y pagá online en segundos.</p>
+                    </div>
+                  </li>
+                  <li class="step-item">
+                    <span class="step-num">02</span>
+                    <div class="step-content">
+                      <strong class="step-title">Recibí tu QR</strong>
+                      <p class="step-desc">Te llega automáticamente por WhatsApp o email.</p>
+                    </div>
+                  </li>
+                  <li class="step-item">
+                    <span class="step-num">03</span>
+                    <div class="step-content">
+                      <strong class="step-title">Mostralo al ingresar</strong>
+                      <p class="step-desc">Escanean tu código y entrás sin filas.</p>
+                    </div>
+                  </li>
+                </ol>
+                <div class="progress-element dark">
+                  <div class="progress-wrapper"> 
+                    <span class="detail-large dark">2</span>
+                    <div class="progress-line-wrapper"><div class="progress-line dark"></div></div>
+                    <span class="detail-large dark">2</span>
+                  </div>
+                </div>
+              </div>
+              <div class="car-wrapper">
+                <img src="images/imgticketsunplash.jpg" alt="Tickets" class="car-image"/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== EVENTOS ===================== -->
+
+      <!-- ===================== SIGN UP ===================== -->
+      <section navtype="dark" class="signup-section">
+        <div class="signup-bg-element">
+          <img src="https://cdn.prod.website-files.com/684c717054297941c34ebdfe/686cca4f064bb19e41086fc0_BG-element.svg" alt="" class="bg-element-img"/>
+        </div>
+        <div class="sidenote-vertical">
+          <span class="detail-small-rotated">SIGN UP</span>
+        </div>
+        <div class="signup-content">
+          <div class="title-tag-row">
+            <h2 class="title-small light">No te pierdas ningún evento</h2>
+            <div class="large-tag"><span>NOTIFICACION</span></div>
+          </div>
+          <div class="copy-form-wrapper">
+            <p class="title-small light">Recibí avisos de nuevas fiestas, shows y eventos.</p>
+            <div class="email-form-wrapper">
+              <input type="email" placeholder="email" class="form-field" id="signup-email"/>
+              <button class="send-button" onclick="handleSignup()">Enviar</button>
+            </div>
+          </div>
+          <div class="down-arrow-center">↓</div>
+        </div>
+      </section>
+
+      <!-- ===================== CLIMATE / STATS ===================== -->
+      <section id="sustainability" navtype="light" class="climate-section">
+        <div class="climate-content-wrapper">
+          <div class="title-sub-sbys">
+            <h2 class="title-medium light">Una mejor forma de entrar a eventos</h2>
+            <div class="sub-content">
+              <p class="body-large light">Rápido, seguro y sin complicaciones.</p>
+              <a href="/technology" class="tertiary-cta light">La tecnología llegó para quedarse</a>
+            </div>
+          </div>
+          <!-- Stats cards -->
+          <div class="stats-cards-wrapper">
+            <div class="stat-card glass-card">
+              <h3 class="callout-large light">⚡ Ingreso más rápido</h3>
+              <div class="stat-figure">
+                <span class="complement light">[+]</span>
+                <span class="figure-big">98<span class="symbol">%</span></span>
+              </div>
+              <div class="stat-bottom">
+                <div class="stat-divider"></div>
+                <p class="body-small light">Hasta 3x más rápido que entradas tradicionales. Sin filas largas ni demoras</p>
+              </div>
+            </div>
+            <div class="stat-card glass-card">
+              <h3 class="callout-large light">🔒 Seguridad total</h3>
+              <div class="stat-figure">
+                <span class="complement light">[+]</span>
+                <span class="figure-big">100<span class="symbol">%</span></span>
+              </div>
+              <div class="stat-bottom">
+                <div class="stat-divider"></div>
+                <p class="body-small light">Entradas verificadas con QR único. Evitá duplicados y falsificaciones</p>
+              </div>
+            </div>
+            <div class="stat-card glass-card">
+              <h3 class="callout-large light">📲 Acceso digital</h3>
+              <div class="stat-figure">
+                <span class="complement light">&gt;</span>
+                <span class="figure-big">100<span class="symbol">%</span></span>
+              </div>
+              <div class="stat-bottom">
+                <div class="stat-divider"></div>
+                <p class="body-small light">Sin papel, todo desde tu celular. Tu entrada siempre disponible</p>
+              </div>
+            </div>
+            <div class="stat-card glass-card">
+              <h3 class="callout-large light">🎟️ Compra en segundos</h3>
+              <div class="stat-figure">
+                <span class="complement light">[+]</span>
+                <span class="figure-big">100<span class="symbol">%</span></span>
+              </div>
+              <div class="stat-bottom">
+                <div class="stat-divider"></div>
+                <p class="body-small light">Pagás online y recibís tu entrada al instante. Sin intermediarios ni vueltas</p>
+              </div>
+            </div>
+          </div>
+          <div class="down-arrow-center light">↓</div>
+          <div class="climate-bg-image"></div>
+        </div>
+      </section>
+
+      <!-- ===================== FOOTER ===================== -->
+      <section navtype="light" class="footer-section">
+        <div class="footer-scroll-wrap">
+          <footer class="footer-inner">
+            <div class="footer-logo-wrapper">
+              <!-- Large green voltpile logo text -->
+               <h1 class="footer-big-logo-text">GRACIAS POR ELEGIRNOS</h1>
+            </div>
+            <div class="footer-linkedin-row">
+              <div class="footer-divider"></div>
+              <div class="footer-link-row">
+                <a href="https://www.instagram.com/ticket_virtual/" target="_blank" class="footer-linkout">
+                  <span class="footer-link-text">Siguenos en nuestras redes</span>
+                  <span class="link-arrow">↗</span>
+                </a>
+              </div>
+              <div class="footer-divider"></div>
+            </div>
+            <div class="footer-bottom">
+              <span class="detail-small light">Todos los derechos reservados ©.</span>
+              <a href="https://typeandspacepartnerships.com/" target="_blank" class="tsp-link">
+                <span class="body-tiny light">SAN MIGUEL DE TUCUMAN</span>
+                <span class="detail-small light">ARGENTINA</span>
+              </a>
+            </div>
+          </footer>
+        </div>
+      </section>
+
+    </div><!-- /smooth-content -->
+  </div><!-- /smooth-wrapper -->
+
+  <!-- ===================== SCRIPTS ===================== -->
+  <!-- GSAP -->
+  <script src="https://cdn.prod.website-files.com/gsap/3.14.2/gsap.min.js"></script>
+  <script src="https://cdn.prod.website-files.com/gsap/3.14.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.prod.website-files.com/gsap/3.14.2/ScrollSmoother.min.js"></script>
+  <script src="https://cdn.prod.website-files.com/gsap/3.14.2/SplitText.min.js"></script>
+  <script src="https://cdn.prod.website-files.com/gsap/3.14.2/ScrambleTextPlugin.min.js"></script>
+  <script>
+    gsap.registerPlugin(ScrollTrigger, ScrollSmoother, SplitText, ScrambleTextPlugin);
+  </script>
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <!-- Main JS -->
+  <script src="main.js"></script>
+  <!-- Ticket interaction -->
+  <script>
+    function switchTicket(id) {
+      document.querySelectorAll('.tio-item').forEach(function(item) {
+        item.classList.remove('tio-active');
+        item.classList.add('tio-sold');
+      });
+      var target = document.getElementById('tio-' + id);
+      if (target) {
+        target.classList.remove('tio-sold');
+        target.classList.add('tio-active');
+      }
+    }
+  </script>
+</body>
+</html>
