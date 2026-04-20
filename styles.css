@@ -1362,6 +1362,57 @@ section { position: relative; }
 }
 @media (max-width: 640px) {
   .eventos-grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* Cards compactas en mobile 2 columnas */
+  .evento-card-v2 { border-radius: 10px; }
+
+  .ec-body {
+    padding: 8px 10px 10px;
+    gap: 3px;
+  }
+
+  .ec-venue-label {
+    font-size: 9px;
+    gap: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+  }
+  .ec-venue-label svg { display: none; }
+
+  .ec-name {
+    font-size: 13px;
+    line-height: 1.1;
+  }
+
+  .ec-meta {
+    gap: 6px;
+    margin-top: 6px;
+    padding-top: 8px;
+    flex-wrap: nowrap;
+    overflow: hidden;
+  }
+
+  .ec-day, .ec-hour {
+    font-size: 18px;
+  }
+
+  .ec-month-year span {
+    font-size: 9px;
+  }
+
+  .ec-divider {
+    height: 22px;
+    flex-shrink: 0;
+  }
+
+  .ec-hrs { font-size: 9px; }
+
+  .ec-hour sup { font-size: 10px; }
+
+  .ec-time-block { gap: 1px; }
+  .ec-date-block { gap: 4px; }
 }
 
 .bentobox-section {
