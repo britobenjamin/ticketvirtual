@@ -603,9 +603,10 @@ section { position: relative; }
   .eventos-section,
   .eventos-page .eventos-section { padding: 0px; }
   .eventos-header,
-  .eventos-page .eventos-header { padding: 0px; gap: 0px; }
-  .eventos-search-wrapper { max-width: 100%; margin-bottom: 20px; }
-  .eventos-grid { padding: 0 12px; gap: 12px; grid-template-columns: repeat(2, 1fr); }
+  .eventos-page .eventos-header { padding: 12px 16px 16px; gap: 12px; align-items: center; text-align: center; }
+  .eventos-search-wrapper { max-width: 100%; margin: 0 auto 0; }
+  .title-huge { text-align: center; }
+  .eventos-grid { padding: 0 12px; gap: 12px; grid-template-columns: repeat(2, 1fr); justify-items: center; }
 
   /* Eliminar espaciado del hero en mobile */
   .hero-section {
