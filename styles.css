@@ -601,8 +601,9 @@ section { position: relative; }
   /* Reducir espacios en mobile */
   .hero-attributes { display: none; }
   .eventos-section,
-  .eventos-page .eventos-section { padding: 8px 0 40px; }
-  .eventos-header { padding: 24px 20px 20px; gap: 6px; }
+  .eventos-page .eventos-section { padding: 0px; }
+  .eventos-header,
+  .eventos-page .eventos-header { padding: 0px; gap: 0px; }
   .eventos-search-wrapper { max-width: 100%; margin-bottom: 20px; }
   .eventos-grid { padding: 0 12px; gap: 12px; grid-template-columns: repeat(2, 1fr); }
 
@@ -956,8 +957,8 @@ section { position: relative; }
   font-weight: 800;
   line-height: 1.05;
   color: var(--white);
-  margin-bottom: 24px;
-  margin-top: 60px;
+  margin-bottom: 40px;
+  margin-top: 40px;
 }
 .green-text { color: var(--green); }
 
@@ -1110,14 +1111,19 @@ section { position: relative; }
    ============================================================ */
 .eventos-section {
   background: var(--dark);
-  padding: 0px 0 60px;
+  padding: 0px 0 0px;
 }
 /* En eventos.html (con smooth-wrapper), empujar contenido bajo el navbar */
 .eventos-page .eventos-section {
-  padding-top: 130px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+/* Desktop: el navbar mide ~110px, empujar el header por debajo */
+.eventos-page .eventos-header {
+  padding-top: 120px;
 }
 .eventos-header {
-  padding: 20px var(--pad-h) 48px;
+  padding: 0px var(--pad-h) 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1134,12 +1140,12 @@ section { position: relative; }
   max-width: 700px;
 }
 .eventos-search-input {
+  margin-top: 30px;
   flex: 1;
   background: rgba(255, 255, 255, 0.07);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 40px;
   padding: 12px 20px;
-  margin-top: 15px;
   color: var(--white);
   font-family: var(--font-body);
   font-size: 14px;
@@ -1149,7 +1155,7 @@ section { position: relative; }
 .eventos-search-input::placeholder { color: rgba(255,255,255,0.35); }
 .eventos-search-input:focus { border-color: var(--green); }
 .eventos-search-btn {
-  margin-top: 15px;
+  margin-top: 30px;
   width: 46px;
   height: 46px;
   border-radius: 50%;
