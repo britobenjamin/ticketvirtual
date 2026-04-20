@@ -14,14 +14,28 @@ document.addEventListener('DOMContentLoaded', function () {
   let smoother;
   const isMobile = window.innerWidth <= 640;
   const hasWrapper = !!document.getElementById('smooth-wrapper');
+  const smoothWrapper = document.getElementById('smooth-wrapper');
+
   if (ScrollSmoother && !isMobile && hasWrapper) {
-    smoother = ScrollSmoother.create({
-      wrapper: '#smooth-wrapper',
-      content: '#smooth-content',
-      smooth: 1.5,
-      smoothTouch: 0.1,
-      effects: true,
-    });
+    try {
+      smoother = ScrollSmoother.create({
+        wrapper: '#smooth-wrapper',
+        content: '#smooth-content',
+        smooth: 1.5,
+        smoothTouch: 0.1,
+        effects: true,
+      });
+    } catch (e) {
+      smoother = null;
+    }
+  }
+
+  // Fallback: si ScrollSmoother no funciona, liberar el wrapper para scroll nativo
+  if (!smoother && smoothWrapper) {
+    smoothWrapper.style.position = 'relative';
+    smoothWrapper.style.inset = 'unset';
+    smoothWrapper.style.overflow = 'visible';
+    smoothWrapper.style.height = 'auto';
   }
 
   // ─── 3. HERO STACK ENTRANCE ANIMATION ────────────────────────
