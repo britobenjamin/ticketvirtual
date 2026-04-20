@@ -59,7 +59,7 @@ img { max-width: 100%; display: block; }
 /* Logo color changes based on section */
 .nav-logo { color: var(--white); transition: color 0.3s; }
 .main-nav.is-dark .nav-logo { color: var(--dark); }
-.nav-logo-img { height: 150px; width: auto; display: block; }
+.nav-logo-img { height: 70px; width: auto; display: block; }
 
 .nav-buttons-wrapper {
   display: flex;
@@ -305,7 +305,7 @@ section { position: relative; }
   display: flex;
   align-items: center;
   white-space: nowrap;
-  margin-top: 300px;
+  margin-top: 50px;
   gap: 0;
   will-change: transform;
 }
@@ -357,10 +357,10 @@ section { position: relative; }
   position: absolute;
   inset: 0;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   z-index: 3;
-  padding: 80px var(--pad-h) 0;
+  padding: 110px var(--pad-h) 0;
 }
 
 /* List container */
@@ -633,7 +633,7 @@ section { position: relative; }
     width: 100%;
     text-align: center;
     padding: 16px 24px;
-    margin-top: 0;
+    margin-top: 200px;
   }
 
   .tio-list {
@@ -956,6 +956,7 @@ section { position: relative; }
   line-height: 1.05;
   color: var(--white);
   margin-bottom: 24px;
+  margin-top: 60px;
 }
 .green-text { color: var(--green); }
 
@@ -1114,6 +1115,7 @@ section { position: relative; }
   padding: 20px var(--pad-h) 48px;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 10px;
 }
 
@@ -1122,8 +1124,7 @@ section { position: relative; }
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-top: 0;
-  margin-bottom: 40px;
+  margin: 0 auto 0;
   width: 100%;
   max-width: 700px;
 }
