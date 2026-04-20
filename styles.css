@@ -1159,6 +1159,42 @@ section { position: relative; }
   transition: background 0.2s;
 }
 .eventos-search-btn:hover { background: var(--green-dim); }
+
+/* ============================================================
+   SCROLL TO TOP BUTTON
+   ============================================================ */
+.scroll-top-btn {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,0.85);
+  color: var(--white);
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 99;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s, border-color 0.3s, color 0.3s, background 0.2s;
+  font-size: 20px;
+  text-decoration: none;
+  line-height: 1;
+}
+.scroll-top-btn.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+.scroll-top-btn.theme-dark {
+  border-color: rgba(13, 25, 41, 0.85);
+  color: var(--dark);
+}
+.scroll-top-btn:hover { background: rgba(255,255,255,0.1); }
+.scroll-top-btn.theme-dark:hover { background: rgba(0,0,0,0.08); }
 .eventos-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

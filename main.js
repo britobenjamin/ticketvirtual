@@ -455,9 +455,40 @@ document.addEventListener('DOMContentLoaded', function () {
   };
 
   // ─── 14. REFRESH SCROLLTRIGGER ────────────────────────────────
-  // Needed after images load to recalculate positions
   window.addEventListener('load', () => {
     ScrollTrigger.refresh();
   });
+
+  // ─── 15. SCROLL TO TOP BUTTON ─────────────────────────────────
+  const scrollTopBtn = document.getElementById('scroll-top-btn');
+  if (scrollTopBtn) {
+    function updateScrollTopBtn() {
+      const scrollY = window.scrollY || window.pageYOffset;
+      scrollTopBtn.classList.toggle('visible', scrollY > 200);
+
+      const checkY = window.innerHeight - 60;
+      let btnTheme = 'light';
+      sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= checkY && rect.bottom > checkY) {
+          btnTheme = section.getAttribute('navtype');
+        }
+      });
+      scrollTopBtn.classList.toggle('theme-dark', btnTheme === 'dark');
+    }
+
+    window.addEventListener('scroll', updateScrollTopBtn);
+    ScrollTrigger.addEventListener('refresh', updateScrollTopBtn);
+    updateScrollTopBtn();
+
+    scrollTopBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      if (smoother) {
+        smoother.scrollTo(0, true);
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+  }
 
 });
