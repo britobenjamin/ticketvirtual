@@ -609,11 +609,18 @@ section { position: relative; }
   .hero-section {
     overflow: visible;
     height: auto;
+    min-height: 0 !important;
   }
   .full-height-wrapper {
-    min-height: unset;
+    min-height: 0 !important;
     height: auto;
     justify-content: flex-start;
+    position: static;
+  }
+  .hero-ticket-area {
+    display: none !important;
+    position: static;
+    inset: unset;
   }
   .hero-title-wrapper { padding: 0; display: none; }
   .hero-cta-wrapper {
