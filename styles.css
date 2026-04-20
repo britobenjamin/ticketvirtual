@@ -959,6 +959,8 @@ section { position: relative; }
   color: var(--white);
   margin-bottom: 40px;
   margin-top: 40px;
+  margin-left: 15px;
+  margin-right: 15px;
 }
 .green-text { color: var(--green); }
 
@@ -1119,8 +1121,10 @@ section { position: relative; }
   padding-bottom: 0px;
 }
 /* Desktop: el navbar mide ~110px, empujar el header por debajo */
-.eventos-page .eventos-header {
-  padding-top: 120px;
+@media (min-width: 769px) {
+  .eventos-page .eventos-header {
+    padding-top: 120px;
+  }
 }
 .eventos-header {
   padding: 0px var(--pad-h) 0px;
