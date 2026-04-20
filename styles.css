@@ -603,7 +603,7 @@ section { position: relative; }
   .eventos-section { padding: 8px 0 40px; }
   .eventos-header { padding: 24px 20px 20px; gap: 6px; }
   .eventos-search-wrapper { max-width: 100%; margin-bottom: 20px; }
-  .eventos-grid { padding: 0 20px; gap: 16px; grid-template-columns: 1fr; }
+  .eventos-grid { padding: 0 12px; gap: 12px; grid-template-columns: repeat(2, 1fr); }
 
   /* Eliminar espaciado del hero en mobile */
   .hero-section {
@@ -1111,7 +1111,7 @@ section { position: relative; }
   padding: 30px 0 60px;
 }
 .eventos-header {
-  padding: 200px var(--pad-h) 48px;
+  padding: 20px var(--pad-h) 48px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -1361,7 +1361,7 @@ section { position: relative; }
   .eventos-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 640px) {
-  .eventos-grid { grid-template-columns: 1fr; }
+  .eventos-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 .bentobox-section {
