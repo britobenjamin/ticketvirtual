@@ -594,6 +594,12 @@ section { position: relative; }
     right: unset;
     z-index: 10;
   }
+  /* En eventos.html el nav siempre queda fijo arriba */
+  .eventos-page .main-nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 200;
+  }
 
   /* Ocultar ticker en mobile */
   .ticker-overflow { display: none; }
