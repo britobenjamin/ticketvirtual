@@ -1301,23 +1301,9 @@ section { position: relative; }
   gap: 16px;
   padding: 60px 0;
 }
-.search-loading-dots {
-  display: flex;
-  gap: 10px;
-}
-.search-loading-dots span {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: var(--green);
-  animation: loadingBounce 0.9s infinite ease-in-out both;
-}
-.search-loading-dots span:nth-child(1) { animation-delay: 0s; }
-.search-loading-dots span:nth-child(2) { animation-delay: 0.18s; }
-.search-loading-dots span:nth-child(3) { animation-delay: 0.36s; }
-@keyframes loadingBounce {
-  0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
-  40%           { transform: scale(1.2); opacity: 1; }
+.search-loading-video {
+  width: clamp(120px, 20vw, 200px);
+  height: auto;
 }
 .search-loading-text {
   font-family: var(--font-body);
