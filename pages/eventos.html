@@ -77,15 +77,23 @@
             id="eventos-search"
             class="eventos-search-input"
             placeholder="Buscar evento..."
-            oninput="filtrarEventos(this.value)"
+            oninput="buscarConDelay(this.value)"
           />
-          <button class="eventos-search-btn" onclick="filtrarEventos(document.getElementById('eventos-search').value)">
+          <button class="eventos-search-btn" onclick="buscarConDelay(document.getElementById('eventos-search').value)">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
             </svg>
           </button>
         </div>
         <h1 class="title-huge">EVENTOS DISPONIBLES</h1>
+      </div>
+
+      <!-- Loading overlay -->
+      <div id="search-loading" class="search-loading" style="display:none;">
+        <div class="search-loading-dots">
+          <span></span><span></span><span></span>
+        </div>
+        <p class="search-loading-text">Buscando eventos...</p>
       </div>
 
       <div class="eventos-grid">
@@ -313,6 +321,36 @@
   <script src="../auth.js"></script>
   <script src="../main.js"></script>
   <script>
+    var searchTimer = null;
+
+    function buscarConDelay(query) {
+      clearTimeout(searchTimer);
+
+      const grid    = document.querySelector('.eventos-grid');
+      const loading = document.getElementById('search-loading');
+
+      /* si el campo está vacío, mostrar todo sin loading */
+      if (!query.trim()) {
+        loading.style.display = 'none';
+        grid.style.visibility = 'visible';
+        grid.style.opacity    = '1';
+        filtrarEventos('');
+        return;
+      }
+
+      /* mostrar loading, ocultar grid */
+      grid.style.visibility = 'hidden';
+      grid.style.opacity    = '0';
+      loading.style.display = 'flex';
+
+      searchTimer = setTimeout(function () {
+        filtrarEventos(query);
+        loading.style.display = 'none';
+        grid.style.visibility = 'visible';
+        grid.style.opacity    = '1';
+      }, 3000);
+    }
+
     function filtrarEventos(query) {
       const q = query.toLowerCase().trim();
       document.querySelectorAll('.eventos-grid .evento-card-v2').forEach(function(card) {
