@@ -274,6 +274,29 @@
   </div>
 
   <script>
+    const STORAGE_KEY = 'tv_users';
+
+    /* ── Seed: carga users.json en localStorage la primera vez ── */
+    async function seedUsers() {
+      if (localStorage.getItem(STORAGE_KEY)) return;
+      try {
+        const res = await fetch('../data/users.json');
+        const users = await res.json();
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(users));
+      } catch {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify([]));
+      }
+    }
+
+    function getUsers() {
+      return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+    }
+
+    function saveUsers(users) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(users));
+    }
+
+    /* ── UI helpers ── */
     function switchTab(tab) {
       document.getElementById('tab-login').classList.toggle('active', tab === 'login');
       document.getElementById('tab-register').classList.toggle('active', tab === 'register');
@@ -295,26 +318,51 @@
       el.className = 'auth-msg ' + type;
     }
 
+    /* ── Login ── */
     function handleLogin(e) {
       e.preventDefault();
+      const email = document.getElementById('login-email').value.trim().toLowerCase();
+      const pass  = document.getElementById('login-pass').value;
+      const users = getUsers();
+      const user  = users.find(u => u.email.toLowerCase() === email && u.password === pass);
+
+      if (!user) {
+        showMsg('msg-login', 'Correo o contraseña incorrectos.', 'error');
+        return;
+      }
+
       const btn = document.getElementById('btn-login');
       btn.disabled = true;
       btn.textContent = 'Ingresando...';
       setTimeout(() => {
-        showMsg('msg-login', '✓ Sesión iniciada correctamente.', 'success');
+        showMsg('msg-login', `✓ Bienvenido, ${user.name}!`, 'success');
         btn.disabled = false;
         btn.textContent = 'Iniciar sesión';
-      }, 1200);
+      }, 800);
     }
 
+    /* ── Registro ── */
     function handleRegister(e) {
       e.preventDefault();
-      const pass = document.getElementById('reg-pass').value;
+      const name  = document.getElementById('reg-name').value.trim();
+      const email = document.getElementById('reg-email').value.trim().toLowerCase();
+      const pass  = document.getElementById('reg-pass').value;
       const pass2 = document.getElementById('reg-pass2').value;
+
       if (pass !== pass2) {
         showMsg('msg-register', 'Las contraseñas no coinciden.', 'error');
         return;
       }
+
+      const users = getUsers();
+      if (users.find(u => u.email.toLowerCase() === email)) {
+        showMsg('msg-register', 'Ya existe una cuenta con ese correo.', 'error');
+        return;
+      }
+
+      users.push({ name, email, password: pass });
+      saveUsers(users);
+
       const btn = document.getElementById('btn-register');
       btn.disabled = true;
       btn.textContent = 'Creando cuenta...';
@@ -324,12 +372,14 @@
         btn.textContent = 'Crear cuenta';
         document.getElementById('form-register').reset();
         setTimeout(() => switchTab('login'), 2000);
-      }, 1200);
+      }, 800);
     }
 
     function showForgot() {
       showMsg('msg-login', 'Funcionalidad de recuperación próximamente.', 'success');
     }
+
+    seedUsers();
   </script>
 </body>
 </html>
