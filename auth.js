@@ -38,6 +38,7 @@
     dropdown.className = 'nav-user-dropdown';
     dropdown.innerHTML = `
       <div class="nav-user-info">${session.name}<br><small>${session.email}</small></div>
+      <a href="#" class="nav-dropdown-item">Configuración</a>
       <button class="nav-logout-btn" id="logout-btn">Cerrar sesión</button>
     `;
     wrapper.appendChild(dropdown);
