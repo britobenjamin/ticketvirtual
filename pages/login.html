@@ -199,6 +199,29 @@
       line-height: 1;
     }
     .toggle-pass:hover { color: rgba(255,255,255,0.7); }
+
+    .google-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      background: #fff;
+      color: #3c4043;
+      border: 1px solid #dadce0;
+      border-radius: 40px;
+      padding: 13px 24px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: box-shadow 0.2s, background 0.2s;
+    }
+    .google-btn:hover {
+      box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+      background: #f8f8f8;
+    }
+    .google-btn svg { flex-shrink: 0; }
   </style>
 </head>
 <body class="body">
@@ -239,6 +262,11 @@
           <div class="auth-divider-line"></div>
         </div>
 
+        <button type="button" class="google-btn" onclick="loginConGoogle()">
+          <svg width="20" height="20" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.33 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.67 14.62 48 24 48z"/><path fill="none" d="M0 0h48v48H0z"/></svg>
+          Continuar con Google
+        </button>
+
         <div class="auth-switch">¿No tenés cuenta? <span onclick="switchTab('register')">Crear cuenta</span></div>
       </form>
 
@@ -267,13 +295,24 @@
           <div class="auth-divider-line"></div>
         </div>
 
+        <button type="button" class="google-btn" onclick="loginConGoogle()">
+          <svg width="20" height="20" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.33 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.67 14.62 48 24 48z"/><path fill="none" d="M0 0h48v48H0z"/></svg>
+          Continuar con Google
+        </button>
+
         <div class="auth-switch">¿Ya tenés cuenta? <span onclick="switchTab('login')">Iniciar sesión</span></div>
       </form>
 
     </div>
   </div>
 
+  <!-- Google Identity Services -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+
   <script>
+    /* ── Reemplazá esto con tu Client ID de Google Cloud Console ── */
+    const GOOGLE_CLIENT_ID = 'TU_CLIENT_ID_AQUI.apps.googleusercontent.com';
+
     const STORAGE_KEY = 'tv_users';
 
     /* ── Seed: carga users.json en localStorage la primera vez ── */
@@ -376,6 +415,38 @@
 
     function showForgot() {
       showMsg('msg-login', 'Funcionalidad de recuperación próximamente.', 'success');
+    }
+
+    /* ── Google Login ── */
+    function loginConGoogle() {
+      if (typeof google === 'undefined' || !google.accounts) {
+        alert('Google aún no cargó. Intentá de nuevo en un segundo.');
+        return;
+      }
+      google.accounts.id.initialize({
+        client_id: GOOGLE_CLIENT_ID,
+        callback: onGoogleCredential,
+        ux_mode: 'popup'
+      });
+      google.accounts.id.prompt();
+    }
+
+    function onGoogleCredential(response) {
+      /* Decodificar el JWT que devuelve Google (sin verificar firma — solo frontend) */
+      const payload = JSON.parse(atob(response.credential.split('.')[1]));
+      const name  = payload.name;
+      const email = payload.email;
+
+      /* Registrar automáticamente si no existe */
+      const users = getUsers();
+      if (!users.find(u => u.email.toLowerCase() === email.toLowerCase())) {
+        users.push({ name, email, password: null, provider: 'google' });
+        saveUsers(users);
+      }
+
+      /* Iniciar sesión y redirigir */
+      localStorage.setItem('tv_session', JSON.stringify({ name, email }));
+      window.location.href = '../index.html';
     }
 
     seedUsers();
