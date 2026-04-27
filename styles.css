@@ -67,6 +67,53 @@ img { max-width: 100%; display: block; }
   gap: 12px;
 }
 
+/* User wrapper (login btn + dropdown) */
+.nav-user-wrapper {
+  position: relative;
+}
+
+.nav-user-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  background: #112236;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 12px;
+  min-width: 200px;
+  z-index: 300;
+  flex-direction: column;
+  gap: 10px;
+}
+.nav-user-dropdown.open { display: flex; }
+
+.nav-user-info {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: rgba(255,255,255,0.7);
+  padding: 4px 8px 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  line-height: 1.5;
+}
+.nav-user-info small { color: rgba(255,255,255,0.4); font-size: 11px; }
+
+.nav-logout-btn {
+  width: 100%;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  color: #ff6b6b;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 10px 12px;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.2s;
+}
+.nav-logout-btn:hover { background: rgba(255,80,80,0.12); }
+
 /* Login button */
 .nav-login-btn {
   display: flex;

@@ -334,11 +334,10 @@
       const btn = document.getElementById('btn-login');
       btn.disabled = true;
       btn.textContent = 'Ingresando...';
-      setTimeout(() => {
-        showMsg('msg-login', `✓ Bienvenido, ${user.name}!`, 'success');
-        btn.disabled = false;
-        btn.textContent = 'Iniciar sesión';
-      }, 800);
+
+      /* guardar sesión y redirigir al index */
+      localStorage.setItem('tv_session', JSON.stringify({ name: user.name, email: user.email }));
+      setTimeout(() => { window.location.href = '../index.html'; }, 800);
     }
 
     /* ── Registro ── */
