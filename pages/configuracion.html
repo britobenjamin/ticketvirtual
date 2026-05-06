@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Configuración | Ticket Virtual</title>
+  <link rel="icon" type="image/png" href="../images/LOGO-COSO.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    .config-page {
+      min-height: 100vh;
+      background: var(--dark);
+      padding: 100px 24px 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .config-back {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      position: fixed;
+      top: 28px;
+      left: clamp(24px, 5vw, 80px);
+      color: rgba(255,255,255,0.5);
+      font-family: var(--font-body);
+      font-size: 13px;
+      transition: color 0.2s;
+      z-index: 10;
+      text-decoration: none;
+    }
+    .config-back:hover { color: var(--white); }
+
+    .config-header {
+      width: 100%;
+      max-width: 600px;
+      margin-bottom: 36px;
+    }
+    .config-title {
+      font-family: var(--font-display);
+      font-size: clamp(26px, 4vw, 40px);
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+    .config-subtitle {
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: rgba(255,255,255,0.4);
+    }
+
+    .config-card {
+      width: 100%;
+      max-width: 600px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      padding: 36px 40px;
+      margin-bottom: 20px;
+    }
+    @media (max-width: 480px) {
+      .config-card { padding: 28px 20px; }
+    }
+
+    .config-section-title {
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 24px;
+    }
+
+    .config-field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .config-field-label {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 6px;
+    }
+
+    .config-field-wrap { display: flex; flex-direction: column; }
+
+    .config-field {
+      width: 100%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 10px;
+      padding: 14px 18px;
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.25s, background 0.25s;
+    }
+    .config-field::placeholder { color: rgba(255,255,255,0.3); }
+    .config-field:focus {
+      border-color: var(--green);
+      background: rgba(255,255,255,0.09);
+    }
+    .config-field:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .config-field-note {
+      font-size: 11px;
+      color: rgba(255,255,255,0.3);
+      margin-top: 6px;
+      line-height: 1.4;
+    }
+
+    .password-wrap { position: relative; }
+    .password-wrap .config-field { padding-right: 46px; }
+    .toggle-pass-btn {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: rgba(255,255,255,0.35);
+      transition: color 0.2s;
+      font-size: 16px;
+      background: none;
+      border: none;
+      padding: 0;
+      line-height: 1;
+    }
+    .toggle-pass-btn:hover { color: rgba(255,255,255,0.7); }
+
+    .config-divider {
+      height: 1px;
+      background: rgba(255,255,255,0.07);
+      margin: 28px 0;
+    }
+
+    .config-save-btn {
+      background: var(--green);
+      color: var(--dark);
+      border: none;
+      border-radius: 40px;
+      padding: 14px 32px;
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: opacity 0.2s;
+      margin-top: 24px;
+    }
+    .config-save-btn:hover { opacity: 0.85; }
+    .config-save-btn:disabled { opacity: 0.5; cursor: default; }
+
+    .config-forgot {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: rgba(255,255,255,0.4);
+      cursor: pointer;
+      transition: color 0.2s;
+      margin-top: 16px;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .config-forgot:hover { color: var(--green); }
+
+    .config-msg {
+      font-size: 13px;
+      padding: 10px 16px;
+      border-radius: 8px;
+      margin-top: 16px;
+      display: none;
+      line-height: 1.5;
+    }
+    .config-msg.success {
+      background: rgba(255,140,0,0.1);
+      color: var(--green);
+      border: 1px solid rgba(255,140,0,0.25);
+      display: block;
+    }
+    .config-msg.error {
+      background: rgba(220,50,50,0.1);
+      color: #ff6b6b;
+      border: 1px solid rgba(220,50,50,0.2);
+      display: block;
+    }
+  </style>
+</head>
+<body class="body">
+
+  <a href="../index.html" class="config-back">← Volver al inicio</a>
+
+  <div class="config-page">
+
+    <div class="config-header">
+      <h1 class="config-title">Configuración</h1>
+      <p class="config-subtitle">Gestioná tu cuenta y preferencias</p>
+    </div>
+
+    <!-- DATOS PERSONALES -->
+    <div class="config-card">
+      <div class="config-section-title">Datos personales</div>
+
+      <div class="config-field-group">
+
+        <div class="config-field-wrap">
+          <div class="config-field-label">Nombre y apellido</div>
+          <input type="text" class="config-field" id="cfg-name" placeholder="Tu nombre completo" />
+        </div>
+
+        <div class="config-field-wrap">
+          <div class="config-field-label">Teléfono</div>
+          <input type="tel" class="config-field" id="cfg-phone" placeholder="+54 9 11 1234 5678" />
+          <span class="config-field-note">Útil para contacto y validación de tickets.</span>
+        </div>
+
+        <div class="config-divider"></div>
+
+        <div class="config-field-wrap">
+          <div class="config-field-label">Email</div>
+          <input type="email" class="config-field" id="cfg-email" placeholder="tu@email.com" />
+          <span class="config-field-note">Si cambiás el email te enviaremos un correo de verificación antes de aplicar el cambio.</span>
+        </div>
+
+      </div>
+
+      <div id="msg-datos" class="config-msg"></div>
+      <button class="config-save-btn" onclick="guardarDatos()">Guardar cambios</button>
+    </div>
+
+    <!-- SEGURIDAD -->
+    <div class="config-card">
+      <div class="config-section-title">Seguridad</div>
+
+      <div class="config-field-group">
+
+        <div class="config-field-wrap">
+          <div class="config-field-label">Contraseña actual</div>
+          <div class="password-wrap">
+            <input type="password" class="config-field" id="cfg-pass-actual" placeholder="••••••••" />
+            <button type="button" class="toggle-pass-btn" onclick="togglePass('cfg-pass-actual', this)">👁</button>
+          </div>
+        </div>
+
+        <div class="config-field-wrap">
+          <div class="config-field-label">Nueva contraseña</div>
+          <div class="password-wrap">
+            <input type="password" class="config-field" id="cfg-pass-nueva" placeholder="Mínimo 6 caracteres" minlength="6" />
+            <button type="button" class="toggle-pass-btn" onclick="togglePass('cfg-pass-nueva', this)">👁</button>
+          </div>
+        </div>
+
+        <div class="config-field-wrap">
+          <div class="config-field-label">Confirmar nueva contraseña</div>
+          <div class="password-wrap">
+            <input type="password" class="config-field" id="cfg-pass-confirm" placeholder="Repetí la nueva contraseña" />
+            <button type="button" class="toggle-pass-btn" onclick="togglePass('cfg-pass-confirm', this)">👁</button>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="msg-pass" class="config-msg"></div>
+      <button class="config-save-btn" onclick="cambiarContrasena()">Cambiar contraseña</button>
+
+      <br>
+      <span class="config-forgot" onclick="olvideClave()">¿Olvidaste tu contraseña?</span>
+      <div id="msg-forgot" class="config-msg"></div>
+    </div>
+
+  </div>
+
+  <script>
+    const STORAGE_KEY  = 'tv_users';
+    const SESSION_KEY  = 'tv_session';
+
+    /* ── Redirigir si no hay sesión ── */
+    const session = JSON.parse(localStorage.getItem(SESSION_KEY) || 'null');
+    if (!session) { window.location.href = 'login.html'; }
+
+    function getUsers() { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); }
+    function saveUsers(u) { localStorage.setItem(STORAGE_KEY, JSON.stringify(u)); }
+
+    function getCurrentUser() {
+      return getUsers().find(u => u.email.toLowerCase() === session.email.toLowerCase());
+    }
+
+    /* ── Pre-cargar campos con datos del usuario ── */
+    window.addEventListener('DOMContentLoaded', () => {
+      const user = getCurrentUser();
+      if (!user) return;
+      document.getElementById('cfg-name').value  = user.name  || '';
+      document.getElementById('cfg-email').value = user.email || '';
+      document.getElementById('cfg-phone').value = user.phone || '';
+    });
+
+    /* ── Helpers ── */
+    function showMsg(id, text, type) {
+      const el = document.getElementById(id);
+      el.textContent = text;
+      el.className = 'config-msg ' + type;
+    }
+    function hideMsg(id) {
+      document.getElementById(id).className = 'config-msg';
+    }
+
+    function togglePass(fieldId, btn) {
+      const f = document.getElementById(fieldId);
+      f.type = f.type === 'password' ? 'text' : 'password';
+      btn.textContent = f.type === 'password' ? '👁' : '🙈';
+    }
+
+    /* ── Guardar nombre, teléfono y email ── */
+    function guardarDatos() {
+      const newName  = document.getElementById('cfg-name').value.trim();
+      const newEmail = document.getElementById('cfg-email').value.trim().toLowerCase();
+      const newPhone = document.getElementById('cfg-phone').value.trim();
+
+      if (!newName) { showMsg('msg-datos', 'El nombre no puede estar vacío.', 'error'); return; }
+      if (!newEmail) { showMsg('msg-datos', 'El email no puede estar vacío.', 'error'); return; }
+
+      const users = getUsers();
+      const idx   = users.findIndex(u => u.email.toLowerCase() === session.email.toLowerCase());
+      if (idx === -1) { showMsg('msg-datos', 'No se encontró tu cuenta.', 'error'); return; }
+
+      const emailCambio = newEmail !== session.email.toLowerCase();
+
+      /* Verificar que el nuevo email no esté en uso por otra cuenta */
+      if (emailCambio && users.find((u, i) => i !== idx && u.email.toLowerCase() === newEmail)) {
+        showMsg('msg-datos', 'Ese email ya está en uso por otra cuenta.', 'error');
+        return;
+      }
+
+      users[idx].name  = newName;
+      users[idx].phone = newPhone;
+
+      if (emailCambio) {
+        /* Simulación de verificación por email */
+        saveUsers(users);
+        showMsg('msg-datos', `Te enviamos un correo de verificación a ${newEmail}. Revisá tu bandeja y confirmá el cambio para que se aplique.`, 'success');
+      } else {
+        users[idx].email = newEmail;
+        saveUsers(users);
+        localStorage.setItem(SESSION_KEY, JSON.stringify({ name: newName, email: newEmail }));
+        showMsg('msg-datos', 'Datos guardados correctamente.', 'success');
+      }
+    }
+
+    /* ── Cambiar contraseña ── */
+    function cambiarContrasena() {
+      hideMsg('msg-pass');
+      const actual   = document.getElementById('cfg-pass-actual').value;
+      const nueva    = document.getElementById('cfg-pass-nueva').value;
+      const confirm  = document.getElementById('cfg-pass-confirm').value;
+
+      if (!actual || !nueva || !confirm) {
+        showMsg('msg-pass', 'Completá todos los campos de contraseña.', 'error'); return;
+      }
+      if (nueva.length < 6) {
+        showMsg('msg-pass', 'La nueva contraseña debe tener al menos 6 caracteres.', 'error'); return;
+      }
+      if (nueva !== confirm) {
+        showMsg('msg-pass', 'La nueva contraseña y la confirmación no coinciden.', 'error'); return;
+      }
+
+      const users = getUsers();
+      const idx   = users.findIndex(u => u.email.toLowerCase() === session.email.toLowerCase());
+      if (idx === -1) { showMsg('msg-pass', 'No se encontró tu cuenta.', 'error'); return; }
+
+      if (users[idx].password !== actual) {
+        showMsg('msg-pass', 'La contraseña actual es incorrecta.', 'error'); return;
+      }
+
+      users[idx].password = nueva;
+      saveUsers(users);
+
+      document.getElementById('cfg-pass-actual').value  = '';
+      document.getElementById('cfg-pass-nueva').value   = '';
+      document.getElementById('cfg-pass-confirm').value = '';
+
+      showMsg('msg-pass', 'Contraseña actualizada correctamente.', 'success');
+    }
+
+    /* ── Olvidé mi contraseña ── */
+    function olvideClave() {
+      const email = document.getElementById('cfg-email').value.trim() || session.email;
+      showMsg('msg-forgot', `Te enviamos las instrucciones de recuperación a ${email}. Revisá tu bandeja de entrada.`, 'success');
+    }
+  </script>
+</body>
+</html>
