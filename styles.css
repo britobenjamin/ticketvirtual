@@ -666,7 +666,7 @@ section { position: relative; }
     overflow: visible;
   }
 
-  /* Nav fijo arriba pero que se pueda scrollear */
+  /* Nav estático en mobile */
   .main-nav {
     position: relative;
     top: unset;
@@ -1196,16 +1196,16 @@ section { position: relative; }
   background: var(--dark);
   padding: 0px 0 0px;
 }
-/* En eventos.html (con smooth-wrapper), empujar contenido bajo el navbar */
+/* En eventos.html el navbar NO sigue al scroll */
+.eventos-page .main-nav {
+  position: relative;
+  top: unset;
+  left: unset;
+  right: unset;
+}
 .eventos-page .eventos-section {
   padding-top: 0px;
   padding-bottom: 0px;
-}
-/* Desktop: el navbar mide ~110px, empujar el header por debajo */
-@media (min-width: 769px) {
-  .eventos-page .eventos-header {
-    padding-top: 120px;
-  }
 }
 .eventos-header {
   padding: 0px var(--pad-h) 0px;
@@ -1220,7 +1220,7 @@ section { position: relative; }
   display: flex;
   align-items: center;
   gap: 10px;
-  margin: 0 auto 0;
+  margin: 100px auto 0;
   width: 100%;
   max-width: 700px;
 }
@@ -1392,7 +1392,7 @@ section { position: relative; }
   display: flex;
   align-items: center;
   gap: 5px;
-  font-family: var(--font-display);
+  font-family: 'Poppins', sans-serif;
   font-size: 11px;
   font-weight: 600;
   color: #666;
@@ -1401,7 +1401,7 @@ section { position: relative; }
 }
 .ec-venue-label svg { flex-shrink: 0; color: #999; }
 .ec-name {
-  font-family: var(--font-display);
+  font-family: 'Poppins', sans-serif;
   font-size: clamp(15px, 1.4vw, 18px);
   font-weight: 800;
   letter-spacing: -0.01em;
@@ -1421,11 +1421,11 @@ section { position: relative; }
 }
 .ec-date-block {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 6px;
 }
 .ec-day {
-  font-family: var(--font-display);
+  font-family: 'Poppins', sans-serif;
   font-size: 28px;
   font-weight: 900;
   line-height: 1;
@@ -1437,7 +1437,7 @@ section { position: relative; }
   line-height: 1.3;
 }
 .ec-month-year span {
-  font-family: var(--font-display);
+  font-family: 'Poppins', sans-serif;
   font-size: 11px;
   font-weight: 700;
   color: var(--dark);
@@ -1451,11 +1451,11 @@ section { position: relative; }
 }
 .ec-time-block {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 3px;
 }
 .ec-hour {
-  font-family: var(--font-display);
+  font-family: 'Poppins', sans-serif;
   font-size: 28px;
   font-weight: 900;
   line-height: 1;
@@ -1471,8 +1471,6 @@ section { position: relative; }
   font-size: 11px;
   font-weight: 600;
   color: #999;
-  align-self: flex-end;
-  padding-bottom: 2px;
 }
 
 /* --- Ver más card --- */
