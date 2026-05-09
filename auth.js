@@ -25,7 +25,7 @@
 
     /* con sesión: mostrar primer nombre + dropdown de logout */
     const firstName = session.name.split(' ')[0];
-    loginBtn.textContent = firstName;
+    loginBtn.innerHTML = `${firstName}<svg class="nav-chevron" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
     loginBtn.removeAttribute('href');
     loginBtn.style.cursor = 'pointer';
 
@@ -48,9 +48,13 @@
       e.preventDefault();
       e.stopPropagation();
       dropdown.classList.toggle('open');
+      loginBtn.classList.toggle('open');
     });
 
-    document.addEventListener('click', () => dropdown.classList.remove('open'));
+    document.addEventListener('click', () => {
+      dropdown.classList.remove('open');
+      loginBtn.classList.remove('open');
+    });
 
     document.getElementById('logout-btn').addEventListener('click', logout);
   }

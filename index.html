@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8"/>
@@ -77,145 +77,49 @@
   <div class="smooth-wrapper" id="smooth-wrapper">
     <div class="smooth-content" id="smooth-content">
 
-      <!-- ===================== HERO ===================== -->
-      <section navtype="light" class="hero-section">
-        <div class="full-height-wrapper light-bg">
+      <!-- ===================== HERO CAROUSEL ===================== -->
+      <section class="hero-carousel-section">
+        <div class="swiper hero-swiper">
+          <div class="swiper-wrapper">
 
-          <!-- Scrolling ticker with logo -->
-          <div class="ticker-overflow">
-            <div class="ticker-flex" id="hero-ticker">
-              <div class="text-ticker">Ticket Virtual</div>
-              <div class="text-ticker">Ticket Virtual</div>
-              <div class="text-ticker">Ticket Virtual</div>
-              <div class="text-ticker">Ticket Virtual</div>
+            <!-- Slide 1 -->
+            <div class="swiper-slide hero-slide">
+              <picture class="hero-slide-picture">
+                <source media="(max-width: 768px)" srcset="images/responsive-carousel-1.jpg">
+                <img src="images/carrousel-1.jpg" alt="" class="hero-slide-img">
+              </picture>
             </div>
+
+            <!-- Slide 2 -->
+            <div class="swiper-slide hero-slide">
+              <picture class="hero-slide-picture">
+                <source media="(max-width: 768px)" srcset="images/responsive-carousel-2.jpg">
+                <img src="images/carrousel-2.jpg" alt="" class="hero-slide-img">
+              </picture>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="swiper-slide hero-slide">
+              <picture class="hero-slide-picture">
+                <source media="(max-width: 768px)" srcset="images/responsive-carousel-3.jpg">
+                <img src="images/carrousel-3.jpg" alt="" class="hero-slide-img">
+              </picture>
+            </div>
+
           </div>
 
-          <!-- Interactive ticket -->
-          <div class="hero-ticket-area">
-            <ul class="tio-list">
+          <!-- Flechas de navegación -->
+          <div class="swiper-button-prev hero-nav-btn"></div>
+          <div class="swiper-button-next hero-nav-btn"></div>
 
-
-              <!-- EARLY BIRD — Bad Bunny -->
-              <li class="tio-item tio-sold" id="tio-early">
-                <div class="tio-strip tio-strip-early" onclick="switchTicket('early')">
-                  <span class="tio-sprice">$100.000</span>
-                  <span class="tio-slabel">BAD BUNNY</span>
-                  <span class="tio-ssold">SOLD OUT</span>
-                </div>
-                <div class="tio-body">
-                  <div class="tio-notch tio-notch-top"></div>
-                  <div class="tio-notch tio-notch-bottom"></div>
-                  <div class="tio-left">
-                    <h2 class="tio-tier">GENERAL</h2>
-                    <div class="tio-price">$100.000</div>
-                    <div class="tio-vat">(VAT EXCLUDED)</div>
-                    <div class="tio-soldout">SOLD OUT</div>
-                  </div>
-                  <div class="tio-perf"></div>
-                  <div class="tio-right">
-                    <h3 class="tio-event-title">BAD BUNNY</h3>
-                    <a href="#contact" class="tio-waitlist-btn">
-                      <span>→</span> COMPRAR ENTRADA <span>←</span>
-                    </a>
-                    <div class="tio-meta">
-                      <div class="tio-meta-row">
-                        <span>BUENOS AIRES</span>
-                        <span>JUN · 14 · 15 · 2025</span>
-                      </div>
-                      <div class="tio-meta-divider"></div>
-                      <div class="tio-meta-row">
-                        <span>ESTADIO MONUMENTAL</span>
-                        <span>2 FECHAS</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </li>
-
-              <!-- STANDARD — DJ Gazpar -->
-              <li class="tio-item tio-sold" id="tio-standard">
-                <div class="tio-strip tio-strip-standard" onclick="switchTicket('standard')">
-                  <span class="tio-sprice">$20.000</span>
-                  <span class="tio-slabel">DJ GAZPAR</span>
-                  <span class="tio-ssold">SOLD OUT</span>
-                </div>
-                <div class="tio-body">
-                  <div class="tio-notch tio-notch-top"></div>
-                  <div class="tio-notch tio-notch-bottom"></div>
-                  <div class="tio-left">
-                    <h2 class="tio-tier">VIP CASQUI</h2>
-                    <div class="tio-price">$20.000</div>
-                    <div class="tio-vat">(VAT EXCLUDED)</div>
-                    <div class="tio-soldout">SOLD OUT</div>
-                  </div>
-                  <div class="tio-perf"></div>
-                  <div class="tio-right">
-                    <h3 class="tio-event-title">DJ GAZPAR</h3>
-                    <a href="#contact" class="tio-waitlist-btn">
-                      <span>→</span> COMPRAR ENTRADA <span>←</span>
-                    </a>
-                    <div class="tio-meta">
-                      <div class="tio-meta-row">
-                        <span>CÓRDOBA</span>
-                        <span>AGO · 9 · 2025</span>
-                      </div>
-                      <div class="tio-meta-divider"></div>
-                      <div class="tio-meta-row">
-                        <span>ESTADIO KEMPES</span>
-                        <span>1 FECHA</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </li>
-
-              <!-- LATE BIRD — Los Pimpinelas -->
-              <li class="tio-item tio-active" id="tio-latebird">
-                <div class="tio-strip tio-strip-late" onclick="switchTicket('latebird')">
-                  <span class="tio-sprice">$60.000</span>
-                  <span class="tio-slabel">LOS PIMPINELAS</span>
-                  <span class="tio-ssold">SOLD OUT</span>
-                </div>
-                <div class="tio-body">
-                  <div class="tio-notch tio-notch-top"></div>
-                  <div class="tio-notch tio-notch-bottom"></div>
-                  <div class="tio-left">
-                    <h2 class="tio-tier">GENERAL</h2>
-                    <div class="tio-price">$60.000</div>
-                    <div class="tio-vat">(VAT EXCLUDED)</div>
-                    <div class="tio-soldout">SOLD OUT</div>
-                  </div>
-                  <div class="tio-perf"></div>
-                  <div class="tio-right">
-                    <h3 class="tio-event-title">LOS PIMPINELAS</h3>
-                    <a href="#contact" class="tio-waitlist-btn">
-                      <span>→</span> COMPRAR ENTRADA <span>←</span>
-                    </a>
-                    <div class="tio-meta">
-                      <div class="tio-meta-row">
-                        <span>ROSARIO</span>
-                        <span>SEP · 20 · 21 · 2025</span>
-                      </div>
-                      <div class="tio-meta-divider"></div>
-                      <div class="tio-meta-row">
-                        <span>TEATRO BROADWAY</span>
-                        <span>2 FECHAS</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </li>
-
-            </ul>
-          </div>
-
-          <!-- CTA eventos -->
-          <div class="hero-cta-wrapper">
-            <a href="pages/eventos.html" class="cta-eventos">IR A EVENTOS</a>
-          </div>
+          <!-- Paginación -->
+          <div class="swiper-pagination hero-pagination"></div>
         </div>
       </section>
+
+      <div class="hero-cta-wrapper">
+        <a href="pages/eventos.html" class="cta-eventos">VER TODOS LOS EVENTOS</a>
+      </div>
 
       <!-- ===================== EVENTOS ===================== -->
       <section id="eventos" navtype="light" class="eventos-section">
@@ -407,7 +311,7 @@
           <a href="pages/eventos.html" class="evento-card-v2 ec-ver-mas">
             <div class="ec-ver-mas-inner">
               <span class="ec-ver-mas-plus">+</span>
-              <p class="ec-ver-mas-text">Click para ver más eventos</p>
+              <p class="ec-ver-mas-text ec-ver-mas-desktop">Click para ver más eventos</p><p class="ec-ver-mas-text ec-ver-mas-mobile">Tocá aquí para ver más eventos</p>
             </div>
           </a>
 
@@ -629,19 +533,21 @@ Sin papel, sin filas, sin errores.</p>
   <script src="auth.js"></script>
   <!-- Main JS -->
   <script src="main.js"></script>
-  <!-- Ticket interaction -->
+  <!-- Hero carousel -->
   <script>
-    function switchTicket(id) {
-      document.querySelectorAll('.tio-item').forEach(function(item) {
-        item.classList.remove('tio-active');
-        item.classList.add('tio-sold');
-      });
-      var target = document.getElementById('tio-' + id);
-      if (target) {
-        target.classList.remove('tio-sold');
-        target.classList.add('tio-active');
-      }
-    }
+    new Swiper('.hero-swiper', {
+      loop: true,
+      autoplay: { delay: 5000, disableOnInteraction: false },
+      speed: 800,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      pagination: {
+        el: '.hero-pagination',
+        clickable: true,
+      },
+    });
   </script>
 </body>
 </html>
