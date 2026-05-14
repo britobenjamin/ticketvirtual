@@ -5,6 +5,15 @@
    scroll-triggered reveals
    ============================================================ */
 
+;(function () {
+  var loader = document.getElementById('page-loader');
+  if (!loader) return;
+  setTimeout(function () {
+    loader.classList.add('hidden');
+    setTimeout(function () { loader.remove(); }, 500);
+  }, 1000);
+})();
+
 document.addEventListener('DOMContentLoaded', function () {
 
   // ─── 1. GSAP PLUGINS REGISTER ───────────────────────────────
