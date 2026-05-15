@@ -174,13 +174,17 @@
     /* ── Main grid ── */
     .ev-main {
       display: none;
-      grid-template-columns: 1fr 400px;
       gap: 64px;
       max-width: 1140px;
       margin: 0 auto;
       padding: 56px var(--pad-h) 100px;
     }
-    .ev-main.visible { display: grid; }
+    .ev-main.visible {
+      display: grid;
+      grid-template-columns: 1fr 400px;
+    }
+    .ev-description-col,
+    .ev-tickets-col { min-width: 0; }
 
     .ev-section-title {
       font-family: var(--font-display);
@@ -450,7 +454,7 @@
     .ev-modal-btn-secondary:hover { border-color: rgba(255,255,255,0.28); color: rgba(255,255,255,0.75); }
 
     /* ── Responsive ── */
-    @media (max-width: 900px) {
+    @media (max-width: 960px) {
       .ev-main.visible { grid-template-columns: 1fr; gap: 40px; }
     }
     @media (max-width: 640px) {
@@ -463,6 +467,9 @@
       .ev-main.visible { padding: 36px 20px 80px; }
       .ev-modal-box { padding: 36px 28px; }
       .ev-waitlist { flex-direction: column; }
+      .ev-ticket-actions { flex-direction: column; align-items: stretch; gap: 8px; }
+      .ev-qty-wrapper { align-self: flex-start; }
+      .ev-buy-btn { width: 100%; text-align: center; }
     }
   </style>
 </head>

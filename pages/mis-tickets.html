@@ -494,10 +494,17 @@
     }
     .del-btn-cancel:hover { border-color: rgba(255,255,255,0.28); color: rgba(255,255,255,0.7); }
 
+    .ticket-btns {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
     @media (max-width: 600px) {
       .ticket-row { flex-wrap: wrap; gap: 14px; }
-      .ticket-qr-btn { width: 100%; justify-content: center; }
-      .ticket-delete-btn { margin-left: auto; }
+      .ticket-btns { width: 100%; }
+      .ticket-qr-btn { flex: 1; justify-content: center; }
     }
   </style>
 </head>
@@ -688,22 +695,24 @@
               </span>
             </div>
           </div>
-          <button class="ticket-qr-btn" onclick="openQR('${t.id}', '${escapeAttr(t.eventName)}', '${escapeAttr(t.date + ' · ' + t.venue)}')">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
-              <rect x="3" y="14" width="7" height="7"/><line x1="14" y1="14" x2="14" y2="14"/>
-              <line x1="17" y1="14" x2="17" y2="14"/><line x1="20" y1="14" x2="20" y2="14"/>
-              <line x1="14" y1="17" x2="14" y2="17"/><line x1="17" y1="17" x2="17" y2="17"/>
-              <line x1="20" y1="17" x2="20" y2="17"/><line x1="14" y1="20" x2="14" y2="20"/>
-              <line x1="17" y1="20" x2="17" y2="20"/><line x1="20" y1="20" x2="20" y2="20"/>
-            </svg>
-            Ver código QR
-          </button>
-          <button class="ticket-delete-btn" onclick="openDeleteModal('${t.id}', '${escapeAttr(t.eventName)}')" title="Eliminar ticket">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/>
-            </svg>
-          </button>
+          <div class="ticket-btns">
+            <button class="ticket-qr-btn" onclick="openQR('${t.id}', '${escapeAttr(t.eventName)}', '${escapeAttr(t.date + ' · ' + t.venue)}')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+                <rect x="3" y="14" width="7" height="7"/><line x1="14" y1="14" x2="14" y2="14"/>
+                <line x1="17" y1="14" x2="17" y2="14"/><line x1="20" y1="14" x2="20" y2="14"/>
+                <line x1="14" y1="17" x2="14" y2="17"/><line x1="17" y1="17" x2="17" y2="17"/>
+                <line x1="20" y1="17" x2="20" y2="17"/><line x1="14" y1="20" x2="14" y2="20"/>
+                <line x1="17" y1="20" x2="17" y2="20"/><line x1="20" y1="20" x2="20" y2="20"/>
+              </svg>
+              Ver código QR
+            </button>
+            <button class="ticket-delete-btn" onclick="openDeleteModal('${t.id}', '${escapeAttr(t.eventName)}')" title="Eliminar ticket">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/>
+              </svg>
+            </button>
+          </div>
         </div>
       `).join('');
     }
