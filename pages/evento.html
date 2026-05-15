@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Evento | Ticket Virtual</title>
+  <link rel="icon" type="image/png" href="../images/LOGO-COSO.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@400;500;700&family=Poppins:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    /* ── Back link ── */
+    .ev-back {
+      position: fixed;
+      top: 110px;
+      left: var(--pad-h);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255,255,255,0.55);
+      font-family: var(--font-body);
+      font-size: 13px;
+      text-decoration: none;
+      transition: color 0.2s;
+      z-index: 50;
+    }
+    .ev-back:hover { color: var(--white); }
+
+    /* ── Hero ── */
+    .ev-hero {
+      position: relative;
+      width: 100%;
+      height: 68vh;
+      min-height: 420px;
+      background-size: cover;
+      background-position: center top;
+      background-color: #0a1520;
+      display: flex;
+      align-items: flex-end;
+    }
+    .ev-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(13,25,41,0.55) 0%,
+        transparent 35%,
+        transparent 45%,
+        rgba(13,25,41,0.88) 72%,
+        #0D1929 100%
+      );
+    }
+    .ev-hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 var(--pad-h) 44px;
+      width: 100%;
+    }
+    .ev-badge-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .ev-sold-out-badge {
+      display: none;
+      background: #e03030;
+      color: #fff;
+      font-family: var(--font-display);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 4px;
+    }
+    .ev-genre-pill {
+      display: inline-block;
+      background: rgba(255,140,0,0.14);
+      border: 1px solid rgba(255,140,0,0.38);
+      color: var(--green);
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 40px;
+    }
+    .ev-nombre {
+      font-family: var(--font-display);
+      font-size: clamp(42px, 8vw, 96px);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 0.95;
+      margin-bottom: 14px;
+      letter-spacing: -0.01em;
+    }
+    .ev-venue-hero {
+      font-family: var(--font-body);
+      font-size: 15px;
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* ── Info bar ── */
+    .ev-info-bar {
+      background: rgba(255,255,255,0.025);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      display: flex;
+      align-items: center;
+      padding: 0 var(--pad-h);
+      overflow-x: auto;
+    }
+    .ev-info-item {
+      padding: 20px 0;
+      margin-right: 36px;
+      flex-shrink: 0;
+    }
+    .ev-info-label {
+      font-family: var(--font-body);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.32);
+      margin-bottom: 4px;
+    }
+    .ev-info-value {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--white);
+    }
+    .ev-info-divider {
+      width: 1px;
+      height: 32px;
+      background: rgba(255,255,255,0.1);
+      margin-right: 36px;
+      flex-shrink: 0;
+    }
+
+    /* ── Error state ── */
+    .ev-error {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 60vh;
+      text-align: center;
+      padding: 60px 24px;
+    }
+    .ev-error-icon { font-size: 52px; margin-bottom: 20px; opacity: 0.4; }
+    .ev-error-title {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+    .ev-error-sub {
+      font-family: var(--font-body);
+      font-size: 15px;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 28px;
+    }
+    .ev-error-link {
+      color: var(--green);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    /* ── Main grid ── */
+    .ev-main {
+      display: none;
+      grid-template-columns: 1fr 400px;
+      gap: 64px;
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 56px var(--pad-h) 100px;
+    }
+    .ev-main.visible { display: grid; }
+
+    .ev-section-title {
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 20px;
+    }
+    .ev-descripcion {
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.6);
+    }
+
+    /* ── Ticket cards ── */
+    .ev-ticket-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 16px;
+      padding: 20px 22px;
+      margin-bottom: 10px;
+      transition: border-color 0.2s;
+    }
+    .ev-ticket-card:not(.agotado):hover { border-color: rgba(255,140,0,0.28); }
+    .ev-ticket-card.agotado { opacity: 0.42; }
+
+    .ev-ticket-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 6px;
+    }
+    .ev-ticket-tipo {
+      font-family: 'Poppins', sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--white);
+    }
+    .ev-ticket-precio {
+      font-family: 'Poppins', sans-serif;
+      font-size: 19px;
+      font-weight: 500;
+      color: var(--green);
+    }
+    .ev-ticket-cu {
+      font-family: var(--font-body);
+      font-size: 11px;
+      color: rgba(255,255,255,0.3);
+      margin-left: 3px;
+    }
+    .ev-ticket-disponibles {
+      font-family: var(--font-body);
+      font-size: 12px;
+      color: rgba(255,255,255,0.32);
+      margin-bottom: 14px;
+    }
+    .ev-ticket-disponibles.agotado-label { color: #ff6060; }
+
+    .ev-ticket-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .ev-qty-wrapper {
+      display: flex;
+      align-items: center;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 40px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .ev-qty-btn {
+      width: 34px;
+      height: 34px;
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.6);
+      font-size: 20px;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s;
+    }
+    .ev-qty-btn:hover { background: rgba(255,255,255,0.1); }
+    .ev-qty-num {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--white);
+      width: 26px;
+      text-align: center;
+    }
+    .ev-buy-btn {
+      flex: 1;
+      background: var(--green);
+      color: var(--dark);
+      border: none;
+      border-radius: 40px;
+      padding: 11px 18px;
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: opacity 0.2s;
+      white-space: nowrap;
+    }
+    .ev-buy-btn:hover { opacity: 0.85; }
+
+    /* ── Auth notice ── */
+    .ev-auth-notice {
+      display: none;
+      background: rgba(255,140,0,0.08);
+      border: 1px solid rgba(255,140,0,0.2);
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 14px;
+    }
+    .ev-auth-notice a { color: var(--green); font-weight: 600; text-decoration: none; }
+
+    /* ── Sold out section ── */
+    .ev-soldout-section {
+      text-align: center;
+      padding: 20px 0 10px;
+    }
+    .ev-soldout-title {
+      font-family: var(--font-display);
+      font-size: 19px;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+    .ev-soldout-sub {
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: rgba(255,255,255,0.38);
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+    .ev-waitlist {
+      display: flex;
+      gap: 8px;
+    }
+    .ev-waitlist-input {
+      flex: 1;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.13);
+      border-radius: 10px;
+      padding: 12px 16px;
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .ev-waitlist-input::placeholder { color: rgba(255,255,255,0.28); }
+    .ev-waitlist-input:focus { border-color: var(--green); }
+    .ev-waitlist-btn {
+      background: var(--green);
+      color: var(--dark);
+      border: none;
+      border-radius: 10px;
+      padding: 12px 18px;
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: opacity 0.2s;
+    }
+    .ev-waitlist-btn:hover { opacity: 0.85; }
+    .ev-waitlist-msg {
+      margin-top: 12px;
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: rgba(255,255,255,0.38);
+    }
+
+    /* ── Success modal ── */
+    .ev-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.78);
+      backdrop-filter: blur(8px);
+      z-index: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.28s;
+    }
+    .ev-modal-overlay.open { opacity: 1; pointer-events: auto; }
+    .ev-modal-box {
+      background: #0f1e30;
+      border: 1px solid rgba(255,255,255,0.11);
+      border-radius: 24px;
+      padding: 48px 40px;
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+      transform: translateY(18px) scale(0.97);
+      transition: transform 0.28s;
+    }
+    .ev-modal-overlay.open .ev-modal-box { transform: translateY(0) scale(1); }
+    .ev-modal-icon { font-size: 50px; margin-bottom: 16px; }
+    .ev-modal-title {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+    .ev-modal-detail {
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: rgba(255,255,255,0.48);
+      line-height: 1.65;
+      margin-bottom: 28px;
+    }
+    .ev-modal-detail strong { color: rgba(255,255,255,0.8); }
+    .ev-modal-actions { display: flex; flex-direction: column; gap: 10px; }
+    .ev-modal-btn-primary {
+      display: block;
+      background: var(--green);
+      color: var(--dark);
+      border: none;
+      border-radius: 40px;
+      padding: 14px 24px;
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .ev-modal-btn-primary:hover { opacity: 0.85; }
+    .ev-modal-btn-secondary {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 40px;
+      padding: 13px 24px;
+      color: rgba(255,255,255,0.45);
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .ev-modal-btn-secondary:hover { border-color: rgba(255,255,255,0.28); color: rgba(255,255,255,0.75); }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .ev-main.visible { grid-template-columns: 1fr; gap: 40px; }
+    }
+    @media (max-width: 640px) {
+      .ev-back { position: static; display: inline-flex; margin: 16px 20px 0; }
+      .ev-hero { height: 52vh; min-height: 300px; }
+      .ev-hero-content { padding: 0 20px 36px; }
+      .ev-info-bar { padding: 0 20px; }
+      .ev-info-item { margin-right: 24px; padding: 16px 0; }
+      .ev-info-divider { margin-right: 24px; }
+      .ev-main.visible { padding: 36px 20px 80px; }
+      .ev-modal-box { padding: 36px 28px; }
+      .ev-waitlist { flex-direction: column; }
+    }
+  </style>
+</head>
+<body class="body">
+
+  <!-- PAGE LOADER -->
+  <div id="page-loader">
+    <img src="../images/LOGO png negro.png" class="loader-logo" alt="Ticket Virtual" />
+    <div class="loader-spinner"></div>
+  </div>
+  <script>
+    setTimeout(function() {
+      var l = document.getElementById('page-loader');
+      if (l) { l.classList.add('hidden'); setTimeout(function() { l.remove(); }, 500); }
+    }, 1000);
+  </script>
+
+  <!-- NAV -->
+  <nav class="main-nav" id="main-nav">
+    <div class="nav-bar">
+      <a href="../index.html" class="nav-logo">
+        <img src="../images/LOGO png negro.png" alt="Ticket Virtual" class="nav-logo-img"/>
+      </a>
+      <div class="nav-buttons-wrapper">
+        <a href="login.html" class="nav-login-btn">Login</a>
+        <div class="menu-button">
+          <a href="#" class="menu-nav-cta menu-nav-cta-light" id="menu-toggle">
+            <div class="menu-cta-contents">
+              <div class="menu-bt-text menu-bt-text-light">Menu</div>
+              <div class="burger-wrapper">
+                <span class="burger-line"></span>
+                <span class="burger-line"></span>
+                <span class="burger-line"></span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="nav-overlay" id="nav-overlay">
+      <a href="#" class="close-nav-btn" id="close-nav">
+        <span class="close-line l1"></span>
+        <span class="close-line l2"></span>
+      </a>
+      <div class="nav-open-links">
+        <a href="../index.html" class="nav-open-link"><span class="nav-plus">+</span><div class="nav-link-text">Inicio</div><span class="nav-plus">+</span></a>
+        <a href="eventos.html" class="nav-open-link"><span class="nav-plus">+</span><div class="nav-link-text">EVENTOS</div><span class="nav-plus">+</span></a>
+        <a href="nosotros.html" class="nav-open-link"><span class="nav-plus">+</span><div class="nav-link-text">Nosotros</div><span class="nav-plus">+</span></a>
+        <a href="contacto.html" class="nav-open-link"><span class="nav-plus">+</span><div class="nav-link-text">Contacto</div><span class="nav-plus">+</span></a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- BACK LINK -->
+  <a href="eventos.html" class="ev-back">← Eventos</a>
+
+  <!-- HERO -->
+  <section class="ev-hero" id="ev-hero">
+    <div class="ev-hero-overlay"></div>
+    <div class="ev-hero-content">
+      <div class="ev-badge-row">
+        <span class="ev-sold-out-badge" id="ev-sold-out-badge">SOLD OUT</span>
+        <span class="ev-genre-pill" id="ev-genre"></span>
+      </div>
+      <h1 class="ev-nombre" id="ev-nombre"></h1>
+      <p class="ev-venue-hero" id="ev-venue-hero"></p>
+    </div>
+  </section>
+
+  <!-- INFO BAR -->
+  <div class="ev-info-bar" id="ev-info-bar">
+    <div class="ev-info-item">
+      <div class="ev-info-label">Fecha</div>
+      <div class="ev-info-value" id="ev-fecha"></div>
+    </div>
+    <div class="ev-info-divider"></div>
+    <div class="ev-info-item">
+      <div class="ev-info-label">Hora</div>
+      <div class="ev-info-value" id="ev-hora"></div>
+    </div>
+    <div class="ev-info-divider"></div>
+    <div class="ev-info-item">
+      <div class="ev-info-label">Puertas</div>
+      <div class="ev-info-value" id="ev-puertas"></div>
+    </div>
+    <div class="ev-info-divider"></div>
+    <div class="ev-info-item">
+      <div class="ev-info-label">Lugar</div>
+      <div class="ev-info-value" id="ev-lugar"></div>
+    </div>
+  </div>
+
+  <!-- ERROR STATE -->
+  <div class="ev-error" id="ev-error">
+    <div class="ev-error-icon">🎟️</div>
+    <div class="ev-error-title">Evento no encontrado</div>
+    <div class="ev-error-sub">El evento que buscás no existe o fue eliminado.</div>
+    <a href="eventos.html" class="ev-error-link">← Ver todos los eventos</a>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="ev-main" id="ev-main">
+    <div class="ev-description-col">
+      <div class="ev-section-title">Sobre el evento</div>
+      <p class="ev-descripcion" id="ev-descripcion"></p>
+    </div>
+    <div class="ev-tickets-col">
+      <div class="ev-section-title" id="ev-tickets-title">Elegí tu entrada</div>
+      <div class="ev-auth-notice" id="ev-auth-notice">
+        Iniciá <a href="login.html">sesión</a> para poder comprar entradas.
+      </div>
+      <div id="ev-tickets-list"></div>
+    </div>
+  </div>
+
+  <!-- SUCCESS MODAL -->
+  <div class="ev-modal-overlay" id="ev-modal" onclick="cerrarModalOverlay(event)">
+    <div class="ev-modal-box">
+      <div class="ev-modal-icon">🎟️</div>
+      <h3 class="ev-modal-title">¡Compra exitosa!</h3>
+      <p class="ev-modal-detail" id="ev-modal-detail"></p>
+      <div class="ev-modal-actions">
+        <a href="mis-tickets.html" class="ev-modal-btn-primary">Ver mis tickets</a>
+        <button class="ev-modal-btn-secondary" onclick="cerrarModal()">Seguir explorando</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../auth.js"></script>
+  <script>
+    var eventoActual = null;
+    var cantidades   = {};
+
+    /* ── Nav toggle ── */
+    document.addEventListener('DOMContentLoaded', function() {
+      var menuToggle = document.getElementById('menu-toggle');
+      var navOverlay = document.getElementById('nav-overlay');
+      var closeNav   = document.getElementById('close-nav');
+      if (menuToggle && navOverlay) {
+        menuToggle.addEventListener('click', function(e) { e.preventDefault(); navOverlay.classList.add('open'); });
+      }
+      if (closeNav && navOverlay) {
+        closeNav.addEventListener('click', function(e) { e.preventDefault(); navOverlay.classList.remove('open'); });
+      }
+      document.querySelectorAll('.nav-open-link').forEach(function(link) {
+        link.addEventListener('click', function() { navOverlay.classList.remove('open'); });
+      });
+
+      cargarEvento();
+    });
+
+    /* ── Helpers ── */
+    function formatPrecio(n) {
+      return '$' + n.toLocaleString('es-AR');
+    }
+
+    function tipoKey(tipo) {
+      return tipo.replace(/[^a-zA-Z0-9]/g, '_');
+    }
+
+    /* ── Load event from JSON ── */
+    async function cargarEvento() {
+      var params = new URLSearchParams(location.search);
+      var id     = params.get('id');
+
+      if (!id) { mostrarError(); return; }
+
+      try {
+        var res     = await fetch('../data/eventos.json');
+        var eventos = await res.json();
+        var evento  = eventos.find(function(e) { return e.id === id; });
+        if (!evento) { mostrarError(); return; }
+        eventoActual = evento;
+        renderEvento(evento);
+      } catch(err) {
+        mostrarError();
+      }
+    }
+
+    function mostrarError() {
+      document.getElementById('ev-info-bar').style.display = 'none';
+      document.getElementById('ev-error').style.display    = 'flex';
+    }
+
+    /* ── Render event ── */
+    function renderEvento(ev) {
+      document.title = ev.nombre + ' | Ticket Virtual';
+
+      /* Hero */
+      document.getElementById('ev-hero').style.backgroundImage = 'url(' + ev.flyer + ')';
+
+      if (ev.soldOut) {
+        document.getElementById('ev-sold-out-badge').style.display = 'inline-block';
+      }
+      document.getElementById('ev-genre').textContent      = ev.genero;
+      document.getElementById('ev-nombre').textContent     = ev.nombre;
+      document.getElementById('ev-venue-hero').textContent = '📍 ' + ev.venue + ' — ' + ev.ciudad;
+
+      /* Info bar */
+      document.getElementById('ev-fecha').textContent   = ev.dia + ' ' + ev.mes + ' ' + ev.anio;
+      document.getElementById('ev-hora').textContent    = ev.hora + ' hrs';
+      document.getElementById('ev-puertas').textContent = ev.puertas + ' hrs';
+      document.getElementById('ev-lugar').textContent   = ev.venue + ', ' + ev.ciudad;
+
+      /* Description */
+      document.getElementById('ev-descripcion').textContent = ev.descripcion;
+
+      /* Tickets */
+      renderTickets(ev);
+
+      /* Show main content */
+      document.getElementById('ev-main').classList.add('visible');
+
+      /* Auth notice */
+      var session = window.__tvAuth && window.__tvAuth.getSession ? window.__tvAuth.getSession() : null;
+      if (!session && !ev.soldOut) {
+        document.getElementById('ev-auth-notice').style.display = 'block';
+      }
+    }
+
+    /* ── Render ticket tier cards ── */
+    function renderTickets(ev) {
+      var container = document.getElementById('ev-tickets-list');
+
+      if (ev.soldOut) {
+        document.getElementById('ev-tickets-title').textContent = 'Sold Out';
+        container.innerHTML =
+          '<div class="ev-soldout-section">' +
+          '  <div class="ev-soldout-title">Este evento está agotado</div>' +
+          '  <div class="ev-soldout-sub">Dejá tu email y te avisamos si se liberan entradas.</div>' +
+          '  <div class="ev-waitlist">' +
+          '    <input type="email" id="ev-waitlist-email" class="ev-waitlist-input" placeholder="tu@email.com" />' +
+          '    <button class="ev-waitlist-btn" onclick="anotarseWaitlist()">Anotarme</button>' +
+          '  </div>' +
+          '  <div class="ev-waitlist-msg" id="ev-waitlist-msg"></div>' +
+          '</div>';
+        return;
+      }
+
+      container.innerHTML = '';
+      ev.tickets.forEach(function(t) {
+        var agotado = t.disponibles === 0;
+        var key     = tipoKey(t.tipo);
+        cantidades[key] = 1;
+
+        var card = document.createElement('div');
+        card.className = 'ev-ticket-card' + (agotado ? ' agotado' : '');
+
+        var actionsHTML = agotado ? '' :
+          '<div class="ev-ticket-actions">' +
+          '  <div class="ev-qty-wrapper">' +
+          '    <button class="ev-qty-btn" onclick="cambiarQty(\'' + key + '\',-1,' + t.precio + ')">−</button>' +
+          '    <span class="ev-qty-num" id="qty-' + key + '">1</span>' +
+          '    <button class="ev-qty-btn" onclick="cambiarQty(\'' + key + '\',1,' + t.precio + ')">+</button>' +
+          '  </div>' +
+          '  <button class="ev-buy-btn" onclick="comprar(\'' + t.tipo + '\',' + t.precio + ',' + '\'' + key + '\')">' +
+          '    Comprar — <span id="total-' + key + '">' + formatPrecio(t.precio) + '</span>' +
+          '  </button>' +
+          '</div>';
+
+        card.innerHTML =
+          '<div class="ev-ticket-top">' +
+          '  <div class="ev-ticket-tipo">' + t.tipo + '</div>' +
+          '  <div class="ev-ticket-precio">' + formatPrecio(t.precio) + '<span class="ev-ticket-cu"> c/u</span></div>' +
+          '</div>' +
+          '<div class="ev-ticket-disponibles' + (agotado ? ' agotado-label' : '') + '">' +
+          '  ' + (agotado ? '● AGOTADO' : t.disponibles.toLocaleString('es-AR') + ' disponibles') +
+          '</div>' +
+          actionsHTML;
+
+        container.appendChild(card);
+      });
+    }
+
+    /* ── Quantity stepper ── */
+    function cambiarQty(key, delta, precio) {
+      cantidades[key] = Math.max(1, Math.min(4, (cantidades[key] || 1) + delta));
+      var qtyEl   = document.getElementById('qty-' + key);
+      var totalEl = document.getElementById('total-' + key);
+      if (qtyEl)   qtyEl.textContent   = cantidades[key];
+      if (totalEl) totalEl.textContent = formatPrecio(cantidades[key] * precio);
+    }
+
+    /* ── Purchase ── */
+    function comprar(tipo, precio, key) {
+      var session = window.__tvAuth && window.__tvAuth.getSession ? window.__tvAuth.getSession() : null;
+      if (!session) {
+        var notice = document.getElementById('ev-auth-notice');
+        notice.style.display = 'block';
+        notice.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
+      var cantidad = cantidades[key] || 1;
+      var ev       = eventoActual;
+
+      /* Format date */
+      var dateObj  = new Date(ev.anio + '-' + ev.mesNum + '-' + ev.dia + 'T12:00:00');
+      var diasSem  = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+      var fechaStr = diasSem[dateObj.getDay()] + ' ' + ev.dia + ' ' + ev.mes + ' ' + ev.anio;
+
+      /* Save tickets to localStorage */
+      var tickets = JSON.parse(localStorage.getItem('tv_tickets') || '[]');
+      for (var i = 0; i < cantidad; i++) {
+        var rand = Math.random().toString(36).substr(2, 5).toUpperCase();
+        tickets.push({
+          id:        'TV-' + ev.anio + ev.mesNum + ev.dia + '-' + rand,
+          eventName: ev.nombre,
+          date:      fechaStr,
+          venue:     ev.venue + ', ' + ev.ciudad,
+          tier:      tipo,
+          status:    'active',
+          emoji:     ev.emoji,
+          flyer:     ev.flyer
+        });
+      }
+      localStorage.setItem('tv_tickets', JSON.stringify(tickets));
+
+      /* Show success modal */
+      document.getElementById('ev-modal-detail').innerHTML =
+        '<strong>' + cantidad + ' entrada' + (cantidad > 1 ? 's' : '') + ' — ' + tipo + '</strong><br>' +
+        ev.nombre + '<br>' +
+        fechaStr + ' · ' + ev.hora + ' hrs<br>' +
+        ev.venue + ', ' + ev.ciudad;
+
+      document.getElementById('ev-modal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    /* ── Modal ── */
+    function cerrarModal() {
+      document.getElementById('ev-modal').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    function cerrarModalOverlay(e) {
+      if (e.target === document.getElementById('ev-modal')) cerrarModal();
+    }
+
+    /* ── Waitlist ── */
+    function anotarseWaitlist() {
+      var input = document.getElementById('ev-waitlist-email');
+      var msg   = document.getElementById('ev-waitlist-msg');
+      if (!input.value.trim() || !input.value.includes('@')) {
+        msg.textContent  = 'Ingresá un email válido.';
+        msg.style.color  = '#ff6060';
+        return;
+      }
+      msg.textContent = '✓ Te anotamos. Te avisamos si se liberan entradas.';
+      msg.style.color = 'var(--green)';
+      input.value     = '';
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') cerrarModal();
+    });
+  </script>
+</body>
+</html>

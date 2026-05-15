@@ -1,0 +1,154 @@
+[
+  {
+    "id": "airbag",
+    "nombre": "AIRBAG",
+    "genero": "Rock",
+    "venue": "MOVISTAR ARENA",
+    "ciudad": "Buenos Aires",
+    "dia": "15",
+    "mes": "Jun",
+    "mesNum": "06",
+    "anio": "2025",
+    "hora": "21:00",
+    "puertas": "19:00",
+    "flyer": "../images/flyer-airbag.jpg",
+    "emoji": "🎸",
+    "soldOut": false,
+    "descripcion": "La banda tucumana más exitosa del rock argentino vuelve al Movistar Arena con una noche cargada de emoción, hits y energía. Una producción de primer nivel con luces, efectos y toda la potencia musical que los caracteriza. Prepará tu repertorio porque va a ser una noche para recordar.",
+    "tickets": [
+      { "tipo": "Early Bird", "precio": 8500, "disponibles": 0 },
+      { "tipo": "General", "precio": 15000, "disponibles": 350 },
+      { "tipo": "VIP", "precio": 38000, "disponibles": 80 }
+    ]
+  },
+  {
+    "id": "bad-bunny",
+    "nombre": "BAD BUNNY",
+    "genero": "Reggaeton / Trap",
+    "venue": "ESTADIO ÚNICO",
+    "ciudad": "La Plata",
+    "dia": "22",
+    "mes": "Jul",
+    "mesNum": "07",
+    "anio": "2025",
+    "hora": "20:00",
+    "puertas": "18:00",
+    "flyer": "../images/flyer-badbunny.jpg",
+    "emoji": "🐰",
+    "soldOut": false,
+    "descripcion": "El conejo malo aterriza en Argentina para una noche épica en el Estadio Único de La Plata. Un show de producción mundial con escenografía imponente, visuales de alta tecnología y todos los hits que lo convirtieron en el artista más escuchado del planeta.",
+    "tickets": [
+      { "tipo": "Campo", "precio": 42000, "disponibles": 1200 },
+      { "tipo": "Platea", "precio": 28000, "disponibles": 800 },
+      { "tipo": "VIP Golden", "precio": 95000, "disponibles": 120 }
+    ]
+  },
+  {
+    "id": "lgante",
+    "nombre": "L-GANTE",
+    "genero": "Cumbia 420",
+    "venue": "TEATRO VORTERIX",
+    "ciudad": "Buenos Aires",
+    "dia": "09",
+    "mes": "Ago",
+    "mesNum": "08",
+    "anio": "2025",
+    "hora": "21:30",
+    "puertas": "20:00",
+    "flyer": "../images/flyer-lgante.jpg",
+    "emoji": "🎵",
+    "soldOut": false,
+    "descripcion": "El creador de la Cumbia 420 llega al Teatro Vorterix con todo su movimiento. Una noche de ritmo y baile ininterrumpido con la energía característica de L-Gante y sus colaboraciones más icónicas.",
+    "tickets": [
+      { "tipo": "General", "precio": 12000, "disponibles": 500 },
+      { "tipo": "VIP", "precio": 28000, "disponibles": 150 }
+    ]
+  },
+  {
+    "id": "pimpinela",
+    "nombre": "PIMPINELA",
+    "genero": "Pop / Balada",
+    "venue": "LUNA PARK",
+    "ciudad": "Buenos Aires",
+    "dia": "20",
+    "mes": "Sep",
+    "mesNum": "09",
+    "anio": "2025",
+    "hora": "21:00",
+    "puertas": "19:30",
+    "flyer": "../images/flyer-pimpinela.jpg",
+    "emoji": "🎤",
+    "soldOut": true,
+    "descripcion": "Joaquín y Lucía Galán en una noche de lujo en el histórico Luna Park. El show sold out que tiene a todos hablando, con décadas de hits que marcaron generaciones. Podés anotarte en la lista de espera.",
+    "tickets": [
+      { "tipo": "General", "precio": 18000, "disponibles": 0 },
+      { "tipo": "Platinado", "precio": 45000, "disponibles": 0 }
+    ]
+  },
+  {
+    "id": "dj-gazpar",
+    "nombre": "DJ GAZPAR",
+    "genero": "Electronic / House",
+    "venue": "NICETO CLUB",
+    "ciudad": "Buenos Aires",
+    "dia": "11",
+    "mes": "Oct",
+    "mesNum": "10",
+    "anio": "2025",
+    "hora": "00:00",
+    "puertas": "22:00",
+    "flyer": "../images/flyer-djgazpar.jpg",
+    "emoji": "🎧",
+    "soldOut": false,
+    "descripcion": "Una noche electrónica sin igual con DJ Gazpar en el mítico Niceto Club. Sets de house y techno que van a mover a toda Buenos Aires hasta el amanecer. La pista más caliente de la temporada.",
+    "tickets": [
+      { "tipo": "Anticipada", "precio": 7000, "disponibles": 200 },
+      { "tipo": "General", "precio": 11000, "disponibles": 400 }
+    ]
+  },
+  {
+    "id": "emilia-mernes",
+    "nombre": "EMILIA MERNES",
+    "genero": "Pop / RKT",
+    "venue": "MOVISTAR ARENA",
+    "ciudad": "Buenos Aires",
+    "dia": "14",
+    "mes": "Nov",
+    "mesNum": "11",
+    "anio": "2025",
+    "hora": "21:00",
+    "puertas": "19:00",
+    "flyer": "../images/flyer-emiliamernes.jpg",
+    "emoji": "⭐",
+    "soldOut": false,
+    "descripcion": "La artista más escuchada de Argentina regresa con una producción espectacular al Movistar Arena. Emilia Mernes promete un show con efectos visuales cinematográficos, coreografías de primer nivel y todos los hits que la convirtieron en un fenómeno pop.",
+    "tickets": [
+      { "tipo": "Early Bird", "precio": 13000, "disponibles": 0 },
+      { "tipo": "Campo", "precio": 22000, "disponibles": 600 },
+      { "tipo": "Platea Alta", "precio": 16000, "disponibles": 400 },
+      { "tipo": "VIP", "precio": 55000, "disponibles": 100 }
+    ]
+  },
+  {
+    "id": "duki",
+    "nombre": "DUKI",
+    "genero": "Trap / Hip-Hop",
+    "venue": "ESTADIO ÚNICO",
+    "ciudad": "La Plata",
+    "dia": "06",
+    "mes": "Dic",
+    "mesNum": "12",
+    "anio": "2025",
+    "hora": "20:00",
+    "puertas": "18:00",
+    "flyer": "../images/flyer-duki.jpg",
+    "emoji": "🔥",
+    "soldOut": false,
+    "descripcion": "El rey del trap argentino cierra el año en el Estadio Único de La Plata. DUKI trae su show más ambicioso con una producción de clase mundial, invitados especiales y todos los temas que lo convirtieron en leyenda del género.",
+    "tickets": [
+      { "tipo": "Campo", "precio": 35000, "disponibles": 1500 },
+      { "tipo": "Platea", "precio": 25000, "disponibles": 900 },
+      { "tipo": "Palco VIP", "precio": 80000, "disponibles": 60 }
+    ]
+  }
+]

@@ -13,27 +13,36 @@
     .tickets-page {
       min-height: 100vh;
       background: var(--dark);
-      padding: 100px 24px 80px;
+      padding: 200px 24px 80px;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
 
     .tickets-back {
+      position: fixed;
+      top: 110px;
+      left: var(--pad-h);
       display: flex;
       align-items: center;
       gap: 8px;
-      position: fixed;
-      top: 28px;
-      left: clamp(24px, 5vw, 80px);
       color: rgba(255,255,255,0.5);
       font-family: var(--font-body);
       font-size: 13px;
       transition: color 0.2s;
-      z-index: 10;
       text-decoration: none;
+      z-index: 50;
     }
     .tickets-back:hover { color: var(--white); }
+
+    @media (max-width: 640px) {
+      .tickets-page { padding-top: 20px; }
+      .tickets-back {
+        position: static;
+        align-self: flex-start;
+        margin-bottom: 32px;
+      }
+    }
 
     .tickets-header {
       width: 100%;
@@ -347,9 +356,148 @@
     .qr-download-btn:hover { opacity: 0.85; }
     .qr-download-btn:disabled { opacity: 0.5; cursor: default; }
 
+    /* Botón eliminar */
+    .ticket-delete-btn {
+      flex-shrink: 0;
+      width: 38px;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: 1.5px solid rgba(255,255,255,0.12);
+      border-radius: 50%;
+      color: rgba(255,255,255,0.3);
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+    .ticket-delete-btn:hover {
+      border-color: rgba(220,50,50,0.5);
+      color: #ff6b6b;
+      background: rgba(220,50,50,0.08);
+    }
+    .ticket-delete-btn svg { width: 15px; height: 15px; }
+
+    /* Modal eliminar */
+    .del-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      backdrop-filter: blur(6px);
+      z-index: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s;
+    }
+    .del-modal-overlay.open { opacity: 1; pointer-events: auto; }
+    .del-modal {
+      background: #112236;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 24px;
+      padding: 40px 36px;
+      max-width: 400px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      transform: translateY(16px) scale(0.97);
+      transition: transform 0.25s;
+    }
+    .del-modal-overlay.open .del-modal { transform: translateY(0) scale(1); }
+    .del-modal-icon { font-size: 40px; }
+    .del-modal-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--white);
+      text-align: center;
+    }
+    .del-modal-event {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--green);
+      text-align: center;
+    }
+    .del-modal-sub {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: rgba(255,255,255,0.38);
+      text-align: center;
+      line-height: 1.5;
+      margin-bottom: 4px;
+    }
+    .del-pass-input {
+      width: 100%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 10px;
+      padding: 13px 16px;
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .del-pass-input::placeholder { color: rgba(255,255,255,0.28); }
+    .del-pass-input:focus { border-color: rgba(255,255,255,0.3); }
+    .del-pass-input.error { border-color: #ff4f4f; }
+    .del-modal-error {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: #ff6b6b;
+      text-align: center;
+      min-height: 18px;
+    }
+    .del-modal-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      width: 100%;
+      margin-top: 4px;
+    }
+    .del-btn-confirm {
+      width: 100%;
+      background: rgba(220,50,50,0.85);
+      color: #fff;
+      border: none;
+      border-radius: 40px;
+      padding: 13px 24px;
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .del-btn-confirm:hover { opacity: 0.85; }
+    .del-btn-cancel {
+      width: 100%;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 40px;
+      padding: 12px 24px;
+      color: rgba(255,255,255,0.45);
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .del-btn-cancel:hover { border-color: rgba(255,255,255,0.28); color: rgba(255,255,255,0.7); }
+
     @media (max-width: 600px) {
       .ticket-row { flex-wrap: wrap; gap: 14px; }
       .ticket-qr-btn { width: 100%; justify-content: center; }
+      .ticket-delete-btn { margin-left: auto; }
     }
   </style>
 </head>
@@ -360,10 +508,68 @@
     <img src="../images/LOGO png negro.png" class="loader-logo" alt="Ticket Virtual" />
     <div class="loader-spinner"></div>
   </div>
+  <script>
+    setTimeout(function() {
+      var l = document.getElementById('page-loader');
+      if (l) { l.classList.add('hidden'); setTimeout(function() { l.remove(); }, 500); }
+    }, 1000);
+  </script>
 
-  <a href="../index.html" class="tickets-back">← Volver al inicio</a>
+  <!-- NAV -->
+  <nav class="main-nav" id="main-nav">
+    <div class="nav-bar">
+      <a href="../index.html" class="nav-logo">
+        <img src="../images/LOGO png negro.png" alt="Ticket Virtual" class="nav-logo-img"/>
+      </a>
+      <div class="nav-buttons-wrapper">
+        <a href="login.html" class="nav-login-btn">Login</a>
+        <div class="menu-button">
+          <a href="#" class="menu-nav-cta menu-nav-cta-light" id="menu-toggle">
+            <div class="menu-cta-contents">
+              <div class="menu-bt-text menu-bt-text-light">Menu</div>
+              <div class="burger-wrapper">
+                <span class="burger-line"></span>
+                <span class="burger-line"></span>
+                <span class="burger-line"></span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="nav-overlay" id="nav-overlay">
+      <a href="#" class="close-nav-btn" id="close-nav">
+        <span class="close-line l1"></span>
+        <span class="close-line l2"></span>
+      </a>
+      <div class="nav-open-links">
+        <a href="../index.html" class="nav-open-link">
+          <span class="nav-plus">+</span>
+          <div class="nav-link-text">Inicio</div>
+          <span class="nav-plus">+</span>
+        </a>
+        <a href="eventos.html" class="nav-open-link">
+          <span class="nav-plus">+</span>
+          <div class="nav-link-text">EVENTOS</div>
+          <span class="nav-plus">+</span>
+        </a>
+        <a href="nosotros.html" class="nav-open-link">
+          <span class="nav-plus">+</span>
+          <div class="nav-link-text">Nosotros</div>
+          <span class="nav-plus">+</span>
+        </a>
+        <a href="contacto.html" class="nav-open-link">
+          <span class="nav-plus">+</span>
+          <div class="nav-link-text">Contacto</div>
+          <span class="nav-plus">+</span>
+        </a>
+      </div>
+    </div>
+  </nav>
 
   <div class="tickets-page">
+
+    <a href="../index.html" class="tickets-back">← Volver al inicio</a>
 
     <div class="tickets-header">
       <h1 class="tickets-title">Mis Tickets</h1>
@@ -376,7 +582,7 @@
 
     <div class="tickets-empty" id="tickets-empty">
       <div class="tickets-empty-icon">🎟️</div>
-      <div class="tickets-empty-text">Todavía no tenés tickets</div>
+      <div class="tickets-empty-text">Aún no has adquirido tickets</div>
       <div class="tickets-empty-sub">Explorá los próximos eventos y conseguí tu entrada.</div>
       <a href="eventos.html" class="tickets-empty-cta">Ver eventos</a>
     </div>
@@ -415,48 +621,49 @@
     </div>
   </div>
 
+  <!-- Modal eliminar ticket -->
+  <div class="del-modal-overlay" id="del-overlay" onclick="closeDelOverlay(event)">
+    <div class="del-modal">
+      <div class="del-modal-icon">🗑️</div>
+      <h3 class="del-modal-title">¿Eliminar ticket?</h3>
+      <p class="del-modal-event" id="del-modal-event"></p>
+      <p class="del-modal-sub">Esta acción no se puede deshacer. Ingresá tu contraseña para confirmar.</p>
+      <input type="password" class="del-pass-input" id="del-pass-input" placeholder="Contraseña" />
+      <div class="del-modal-error" id="del-modal-error"></div>
+      <div class="del-modal-actions">
+        <button class="del-btn-confirm" onclick="confirmarEliminar()">Sí, eliminar</button>
+        <button class="del-btn-cancel" onclick="closeDelModal()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var menuToggle = document.getElementById('menu-toggle');
+      var navOverlay = document.getElementById('nav-overlay');
+      var closeNav   = document.getElementById('close-nav');
+      if (menuToggle && navOverlay) {
+        menuToggle.addEventListener('click', function(e) { e.preventDefault(); navOverlay.classList.add('open'); });
+      }
+      if (closeNav && navOverlay) {
+        closeNav.addEventListener('click', function(e) { e.preventDefault(); navOverlay.classList.remove('open'); });
+      }
+      document.querySelectorAll('.nav-open-link').forEach(function(link) {
+        link.addEventListener('click', function() { navOverlay.classList.remove('open'); });
+      });
+    });
+  </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script>
     const SESSION_KEY = 'tv_session';
     const session = JSON.parse(localStorage.getItem(SESSION_KEY) || 'null');
     if (!session) { window.location.href = 'login.html'; }
 
-    /* ── Tickets de muestra (reemplazar con datos reales cuando exista compra) ── */
-    const SAMPLE_TICKETS = [
-      {
-        id: 'TV-20240318-001',
-        eventName: 'Ultra Music Festival',
-        date: 'Sáb 18 Mar 2025',
-        venue: 'Estadio Único, La Plata',
-        tier: 'General',
-        status: 'active',
-        emoji: '🎵'
-      },
-      {
-        id: 'TV-20240412-002',
-        eventName: 'Lollapalooza Argentina',
-        date: 'Dom 13 Abr 2025',
-        venue: 'Hipódromo de San Isidro',
-        tier: 'VIP',
-        status: 'active',
-        emoji: '🎸'
-      },
-      {
-        id: 'TV-20231201-003',
-        eventName: 'New Year\'s Bash 2024',
-        date: 'Dom 31 Dic 2023',
-        venue: 'Costanera Sur, CABA',
-        tier: 'Early Bird',
-        status: 'used',
-        emoji: '🎆'
-      }
-    ];
-
     function renderTickets() {
       const list  = document.getElementById('tickets-list');
       const empty = document.getElementById('tickets-empty');
 
-      /* Leer tickets del usuario desde localStorage (o usar sample) */
       const userTickets = getUserTickets();
 
       if (userTickets.length === 0) {
@@ -467,7 +674,10 @@
 
       list.innerHTML = userTickets.map(t => `
         <div class="ticket-row">
-          <div class="ticket-flyer-placeholder">${t.emoji}</div>
+          ${t.flyer
+            ? `<img class="ticket-flyer" src="${t.flyer}" alt="${t.eventName}">`
+            : `<div class="ticket-flyer-placeholder">${t.emoji || '🎵'}</div>`
+          }
           <div class="ticket-info">
             <div class="ticket-event-name">${t.eventName}</div>
             <div class="ticket-meta">${t.date} · ${t.venue}</div>
@@ -489,14 +699,17 @@
             </svg>
             Ver código QR
           </button>
+          <button class="ticket-delete-btn" onclick="openDeleteModal('${t.id}', '${escapeAttr(t.eventName)}')" title="Eliminar ticket">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/>
+            </svg>
+          </button>
         </div>
       `).join('');
     }
 
     function getUserTickets() {
-      /* En el futuro: filtrar por email del usuario desde una DB.
-         Por ahora mostramos los tickets de muestra para todos los usuarios. */
-      return SAMPLE_TICKETS;
+      return JSON.parse(localStorage.getItem('tv_tickets') || '[]');
     }
 
     function escapeAttr(str) {
@@ -631,8 +844,72 @@
     }
 
     document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') closeQRBtn();
+      if (e.key === 'Escape') { closeQRBtn(); closeDelModal(); }
     });
+
+    /* ── Modal eliminar ── */
+    var ticketAEliminar = null;
+
+    function openDeleteModal(ticketId, eventName) {
+      ticketAEliminar = ticketId;
+      document.getElementById('del-modal-event').textContent = eventName;
+      document.getElementById('del-modal-error').textContent = '';
+
+      var passInput = document.getElementById('del-pass-input');
+      passInput.value = '';
+      passInput.classList.remove('error');
+
+      /* Detectar si es usuario de Google (sin contraseña) */
+      var session = JSON.parse(localStorage.getItem('tv_session') || 'null');
+      var users   = JSON.parse(localStorage.getItem('tv_users') || '[]');
+      var user    = session ? users.find(function(u) { return u.email.toLowerCase() === session.email.toLowerCase(); }) : null;
+
+      if (user && user.password === null) {
+        passInput.placeholder = 'Cuenta de Google — sin contraseña requerida';
+        passInput.disabled    = true;
+      } else {
+        passInput.placeholder = 'Contraseña';
+        passInput.disabled    = false;
+      }
+
+      document.getElementById('del-overlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDelModal() {
+      document.getElementById('del-overlay').classList.remove('open');
+      document.body.style.overflow = '';
+      ticketAEliminar = null;
+    }
+
+    function closeDelOverlay(e) {
+      if (e.target === document.getElementById('del-overlay')) closeDelModal();
+    }
+
+    function confirmarEliminar() {
+      var session = JSON.parse(localStorage.getItem('tv_session') || 'null');
+      var users   = JSON.parse(localStorage.getItem('tv_users') || '[]');
+      var user    = session ? users.find(function(u) { return u.email.toLowerCase() === session.email.toLowerCase(); }) : null;
+
+      var passInput = document.getElementById('del-pass-input');
+      var errorEl   = document.getElementById('del-modal-error');
+
+      /* Validar contraseña (salvo usuarios de Google) */
+      if (user && user.password !== null) {
+        if (passInput.value !== user.password) {
+          errorEl.textContent = 'Contraseña incorrecta.';
+          passInput.classList.add('error');
+          passInput.focus();
+          return;
+        }
+      }
+
+      /* Eliminar */
+      var tickets = JSON.parse(localStorage.getItem('tv_tickets') || '[]');
+      localStorage.setItem('tv_tickets', JSON.stringify(tickets.filter(function(t) { return t.id !== ticketAEliminar; })));
+      closeDelModal();
+      renderTickets();
+    }
 
     renderTickets();
   </script>
